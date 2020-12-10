@@ -24,7 +24,7 @@ We have launched an online demo for this module: [https://phonelogin.samples.eas
     * (Optional) EasyAbp.Abp.PhoneNumberLogin.MongoDB
     * (Optional) EasyAbp.Abp.PhoneNumberLogin.Web
 
-1. Add `DependsOn(typeof(Abp.PhoneNumberLoginXxxModule))` attribute to configure the module dependencies. ([see how](https://github.com/EasyAbp/EasyAbpGuide/blob/master/How-To.md#add-module-dependencies))
+1. Add `DependsOn(typeof(Abp.PhoneNumberLoginXxxModule))` attribute to configure the module dependencies. ([see how](https://github.com/EasyAbp/EasyAbpGuide/blob/main/How-To.md#add-module-dependencies))
 
 1. Add `builder.ConfigureAbpPhoneNumberLogin();` to the `OnModelCreating()` method in **MyProjectMigrationsDbContext.cs**.
 
@@ -36,7 +36,7 @@ We have launched an online demo for this module: [https://phonelogin.samples.eas
 
 Ensure the `EasyAbp.Abp.PhoneNumberLogin.Web` module was installed.
 
-1. Customize the default login page ([see demo](https://github.com/EasyAbp/Abp.PhoneNumberLogin/blob/master/samples/PhoneNumberLoginSample/src/PhoneNumberLoginSample.Web/Pages/Account)).
+1. Customize the default login page ([see demo](https://github.com/EasyAbp/Abp.PhoneNumberLogin/blob/main/samples/PhoneNumberLoginSample/src/PhoneNumberLoginSample.Web/Pages/Account)).
 
 2. Register an account with a confirmed phone number or confirm your phone number of your existing account.
 
@@ -46,16 +46,16 @@ Ensure the `EasyAbp.Abp.PhoneNumberLogin.Web` module was installed.
 
 * By Password
 
-    1. Request `/api/phone-number-login/account/request-token/by-password` in POST method. ([see input model](https://github.com/EasyAbp/Abp.PhoneNumberLogin/blob/master/src/EasyAbp.Abp.PhoneNumberLogin.Application.Contracts/EasyAbp/Abp/PhoneNumberLogin/Account/Dtos/RequestTokenByPasswordInput.cs))
+    1. Request `/api/phone-number-login/account/request-token/by-password` in POST method. ([see input model](https://github.com/EasyAbp/Abp.PhoneNumberLogin/blob/main/src/EasyAbp.Abp.PhoneNumberLogin.Application.Contracts/EasyAbp/Abp/PhoneNumberLogin/Account/Dtos/RequestTokenByPasswordInput.cs))
 
 * By Verification Code
 
-    1. Request `/api/phone-number-login/account/send-verification-code` in POST method to send and receive a verification code for confirming a phone number. ([see input model](https://github.com/EasyAbp/Abp.PhoneNumberLogin/blob/master/src/EasyAbp.Abp.PhoneNumberLogin.Application.Contracts/EasyAbp/Abp/PhoneNumberLogin/Account/Dtos/SendVerificationCodeInput.cs))
-    2. Request `/api/phone-number-login/account/request-token/by-verification-code` in POST method. ([see input model](https://github.com/EasyAbp/Abp.PhoneNumberLogin/blob/master/src/EasyAbp.Abp.PhoneNumberLogin.Application.Contracts/EasyAbp/Abp/PhoneNumberLogin/Account/Dtos/RequestTokenByVerificationCodeInput.cs))
+    1. Request `/api/phone-number-login/account/send-verification-code` in POST method to send and receive a verification code for confirming a phone number. ([see input model](https://github.com/EasyAbp/Abp.PhoneNumberLogin/blob/main/src/EasyAbp.Abp.PhoneNumberLogin.Application.Contracts/EasyAbp/Abp/PhoneNumberLogin/Account/Dtos/SendVerificationCodeInput.cs))
+    2. Request `/api/phone-number-login/account/request-token/by-verification-code` in POST method. ([see input model](https://github.com/EasyAbp/Abp.PhoneNumberLogin/blob/main/src/EasyAbp.Abp.PhoneNumberLogin.Application.Contracts/EasyAbp/Abp/PhoneNumberLogin/Account/Dtos/RequestTokenByVerificationCodeInput.cs))
 
 * Refresh a Token
 
-    1. Request `/api/phone-number-login/account/refresh-token` in POST method. ([see input model](https://github.com/EasyAbp/Abp.PhoneNumberLogin/blob/master/src/EasyAbp.Abp.PhoneNumberLogin.Application.Contracts/EasyAbp/Abp/PhoneNumberLogin/Account/Dtos/RefreshTokenInput.cs))
+    1. Request `/api/phone-number-login/account/refresh-token` in POST method. ([see input model](https://github.com/EasyAbp/Abp.PhoneNumberLogin/blob/main/src/EasyAbp.Abp.PhoneNumberLogin.Application.Contracts/EasyAbp/Abp/PhoneNumberLogin/Account/Dtos/RefreshTokenInput.cs))
 
 ![LoginByPhoneNumberAndPassword](/docs/images/LoginByPhoneNumberAndPassword.png)
 
