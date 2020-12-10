@@ -13,7 +13,7 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Account
             throw new System.NotImplementedException();
         }
 
-        public virtual Task<IdentityUserDto> RegisterAsync(RegisterWithPhoneNumberDto input)
+        public virtual Task<IdentityUserDto> RegisterAsync(RegisterWithPhoneNumberInput input)
         {
             throw new System.NotImplementedException();
         }
@@ -23,17 +23,17 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Account
             throw new System.NotImplementedException();
         }
 
-        public virtual Task ResetPasswordAsync(ResetPasswordWithPhoneNumber input)
+        public virtual Task ResetPasswordAsync(ResetPasswordWithPhoneNumberInput input)
         {
             throw new System.NotImplementedException();
         }
 
-        public virtual Task<string> RequestTokenByPasswordAsync(RequestTokenByPassword input)
+        public virtual Task<string> RequestTokenByPasswordAsync(RequestTokenByPasswordInput input)
         {
             throw new System.NotImplementedException();
         }
 
-        public virtual Task<string> RequestTokenByVerificationCodeAsync(RequestTokenByVerificationCode input)
+        public virtual Task<string> RequestTokenByVerificationCodeAsync(RequestTokenByVerificationCodeInput input)
         {
             throw new System.NotImplementedException();
         }

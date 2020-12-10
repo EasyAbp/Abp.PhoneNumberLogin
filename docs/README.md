@@ -46,16 +46,16 @@ Ensure the `EasyAbp.Abp.PhoneNumberLogin.Web` module was installed.
 
 * By Password
 
-    1. Request `/api/phone-number-login/account/request-token/by-password` in POST method. ([see input model](https://github.com/EasyAbp/Abp.PhoneNumberLogin/blob/master/src/EasyAbp.Abp.PhoneNumberLogin.Application.Contracts/Identity/Dtos/RequestTokenByPasswordInput.cs))
+    1. Request `/api/phone-number-login/account/request-token/by-password` in POST method. ([see input model](https://github.com/EasyAbp/Abp.PhoneNumberLogin/blob/master/src/EasyAbp.Abp.PhoneNumberLogin.Application.Contracts/EasyAbp/Abp/PhoneNumberLogin/Account/Dtos/RequestTokenByPasswordInput.cs))
 
 * By Verification Code
 
-    1. Request `/api/phone-number-login/account/send-verification-code` in POST method to send and receive a verification code for confirming a phone number. ([see input model](https://github.com/EasyAbp/Abp.PhoneNumberLogin/blob/master/src/EasyAbp.Abp.PhoneNumberLogin.Application.Contracts/Identity/Dtos/SendVerificationCodeInput.cs))
-    2. Request `/api/phone-number-login/account/request-token/by-verification-code` in POST method. ([see input model](https://github.com/EasyAbp/Abp.PhoneNumberLogin/blob/master/src/EasyAbp.Abp.PhoneNumberLogin.Application.Contracts/Identity/Dtos/RequestTokenByVerificationCodeInput.cs))
+    1. Request `/api/phone-number-login/account/send-verification-code` in POST method to send and receive a verification code for confirming a phone number. ([see input model](https://github.com/EasyAbp/Abp.PhoneNumberLogin/blob/master/src/EasyAbp.Abp.PhoneNumberLogin.Application.Contracts/EasyAbp/Abp/PhoneNumberLogin/Account/Dtos/SendVerificationCodeInput.cs))
+    2. Request `/api/phone-number-login/account/request-token/by-verification-code` in POST method. ([see input model](https://github.com/EasyAbp/Abp.PhoneNumberLogin/blob/master/src/EasyAbp.Abp.PhoneNumberLogin.Application.Contracts/EasyAbp/Abp/PhoneNumberLogin/Account/Dtos/RequestTokenByVerificationCodeInput.cs))
 
 * Refresh a Token
 
-    1. Request `/api/phone-number-login/account/refresh-token` in POST method. ([see input model](https://github.com/EasyAbp/Abp.PhoneNumberLogin/blob/master/src/EasyAbp.Abp.PhoneNumberLogin.Application.Contracts/Identity/Dtos/RefreshTokenInput.cs))
+    1. Request `/api/phone-number-login/account/refresh-token` in POST method. ([see input model](https://github.com/EasyAbp/Abp.PhoneNumberLogin/blob/master/src/EasyAbp.Abp.PhoneNumberLogin.Application.Contracts/EasyAbp/Abp/PhoneNumberLogin/Account/Dtos/RefreshTokenInput.cs))
 
 ![LoginByPhoneNumberAndPassword](/docs/images/LoginByPhoneNumberAndPassword.png)
 

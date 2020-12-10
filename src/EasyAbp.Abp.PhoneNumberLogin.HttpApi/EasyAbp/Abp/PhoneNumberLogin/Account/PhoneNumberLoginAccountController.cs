@@ -27,7 +27,7 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Account
 
         [HttpPost]
         [Route("register")]
-        public virtual Task<IdentityUserDto> RegisterAsync(RegisterWithPhoneNumberDto input)
+        public virtual Task<IdentityUserDto> RegisterAsync(RegisterWithPhoneNumberInput input)
         {
             return _service.RegisterAsync(input);
         }
@@ -41,21 +41,21 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Account
 
         [HttpPost]
         [Route("reset-password")]
-        public virtual Task ResetPasswordAsync(ResetPasswordWithPhoneNumber input)
+        public virtual Task ResetPasswordAsync(ResetPasswordWithPhoneNumberInput input)
         {
             return _service.ResetPasswordAsync(input);
         }
 
         [HttpPost]
         [Route("request-token/by-password")]
-        public virtual Task<string> RequestTokenByPasswordAsync(RequestTokenByPassword input)
+        public virtual Task<string> RequestTokenByPasswordAsync(RequestTokenByPasswordInput input)
         {
             return _service.RequestTokenByPasswordAsync(input);
         }
 
         [HttpPost]
         [Route("request-token/by-verification-code")]
-        public virtual Task<string> RequestTokenByVerificationCodeAsync(RequestTokenByVerificationCode input)
+        public virtual Task<string> RequestTokenByVerificationCodeAsync(RequestTokenByVerificationCodeInput input)
         {
             return _service.RequestTokenByVerificationCodeAsync(input);
         }

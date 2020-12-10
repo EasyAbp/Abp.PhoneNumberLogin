@@ -9,15 +9,15 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Account
     {
         Task<SendVerificationCodeResult> SendVerificationCodeAsync(SendVerificationCodeInput input);
 
-        Task<IdentityUserDto> RegisterAsync(RegisterWithPhoneNumberDto input);
+        Task<IdentityUserDto> RegisterAsync(RegisterWithPhoneNumberInput input);
         
         Task<ConfirmPhoneNumberResult> ConfirmPhoneNumberAsync(ConfirmPhoneNumberInput input);
         
-        Task ResetPasswordAsync(ResetPasswordWithPhoneNumber input);
+        Task ResetPasswordAsync(ResetPasswordWithPhoneNumberInput input);
 
-        Task<string> RequestTokenByPasswordAsync(RequestTokenByPassword input);
+        Task<string> RequestTokenByPasswordAsync(RequestTokenByPasswordInput input);
 
-        Task<string> RequestTokenByVerificationCodeAsync(RequestTokenByVerificationCode input);
+        Task<string> RequestTokenByVerificationCodeAsync(RequestTokenByVerificationCodeInput input);
 
         Task<string> RefreshTokenAsync(RefreshTokenInput input);
     }

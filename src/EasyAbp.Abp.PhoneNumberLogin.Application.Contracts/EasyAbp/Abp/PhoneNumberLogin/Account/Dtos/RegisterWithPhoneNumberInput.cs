@@ -7,7 +7,7 @@ using Volo.Abp.Validation;
 namespace EasyAbp.Abp.PhoneNumberLogin.Account.Dtos
 {
     [Serializable]
-    public class RegisterWithPhoneNumberDto
+    public class RegisterWithPhoneNumberInput
     {
         [Required]
         [DynamicStringLength(typeof(IdentityUserConsts), nameof(IdentityUserConsts.MaxPhoneNumberLength))]
