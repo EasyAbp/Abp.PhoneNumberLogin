@@ -1,0 +1,10 @@
+{
+  "culture": "zh-Hans",
+  "texts": {
+    "PhoneNumberLogin": "手机号登录",
+    "DuplicatePhoneNumber": "手机号已经被使用了",
+    "PhoneNumberStartsWithZero": "手机号不能以 0 开头",
+    "NonNumericPhoneNumber": "不可为非数字手机号",
+    "Permission:UserLookup": "用户查询"
+  }
+}

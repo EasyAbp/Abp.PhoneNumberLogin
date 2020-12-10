@@ -1,0 +1,24 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <Import Project="..\..\common.props" />
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <RootNamespace>PhoneNumberLoginSample</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\..\src\EasyAbp.Abp.PhoneNumberLogin.Application\EasyAbp.Abp.PhoneNumberLogin.Application.csproj" />
+    <ProjectReference Include="..\PhoneNumberLoginSample.Domain\PhoneNumberLoginSample.Domain.csproj" />
+    <ProjectReference Include="..\PhoneNumberLoginSample.Application.Contracts\PhoneNumberLoginSample.Application.Contracts.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.Account.Application" Version="3.2.1" />
+    <PackageReference Include="Volo.Abp.Identity.Application" Version="3.2.1" />
+    <PackageReference Include="Volo.Abp.PermissionManagement.Application" Version="3.2.1" />
+    <PackageReference Include="Volo.Abp.TenantManagement.Application" Version="3.2.1" />
+    <PackageReference Include="Volo.Abp.FeatureManagement.Application" Version="3.2.1" />
+  </ItemGroup>
+
+</Project>

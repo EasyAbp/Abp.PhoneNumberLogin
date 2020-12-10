@@ -1,0 +1,21 @@
+﻿@using EasyAbp.Abp.PhoneNumberLogin.Localization
+@using Microsoft.AspNetCore.Mvc.Localization
+@model EasyAbp.Abp.PhoneNumberLogin.Web.Pages.PhoneNumberLogin.Components.PhoneNumberLoginByPasswordWidget.PhoneNumberLoginByPasswordViewModel
+@inject IHtmlLocalizer<PhoneNumberLoginResource> L
+<div class="form-group">
+    <label asp-for="@Model.PhoneNumber"></label>
+    <input asp-for="@Model.PhoneNumber" class="form-control" />
+    <span asp-validation-for="@Model.PhoneNumber" class="text-danger"></span>
+</div>
+<div class="form-group">
+    <label asp-for="@Model.Password"></label>
+    <input asp-for="@Model.Password" class="form-control" />
+    <span asp-validation-for="@Model.Password" class="text-danger"></span>
+</div>
+<div class="form-check">
+    <label asp-for="@Model.RememberMe" class="form-check-label">
+        <input asp-for="@Model.RememberMe" class="form-check-input" />
+        @Html.DisplayNameFor(m => m.RememberMe)
+    </label>
+</div>
+<abp-button type="submit" button-type="Primary" name="Action" value="Login" class="btn-block btn-lg mt-3">@L["Login"]</abp-button>

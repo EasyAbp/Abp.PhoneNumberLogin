@@ -1,0 +1,10 @@
+{
+  "culture": "sl",
+  "texts": {
+    "PhoneNumberLogin": "Login by phone number",
+    "DuplicatePhoneNumber": "The phone number has been used by others",
+    "PhoneNumberStartsWithZero": "Phone number can not start with 0",
+    "NonNumericPhoneNumber": "Non-numeric phone number is not allowed",
+    "Permission:UserLookup": "User lookup"
+  }
+}
