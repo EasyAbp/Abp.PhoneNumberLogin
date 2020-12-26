@@ -3,6 +3,7 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using PhoneNumberLoginSample.EntityFrameworkCore;
 using Volo.Abp.EntityFrameworkCore;
@@ -10,9 +11,10 @@ using Volo.Abp.EntityFrameworkCore;
 namespace PhoneNumberLoginSample.Migrations
 {
     [DbContext(typeof(PhoneNumberLoginSampleMigrationsDbContext))]
-    partial class PhoneNumberLoginSampleMigrationsDbContextModelSnapshot : ModelSnapshot
+    [Migration("20201226084941_UpgradedToAbp402")]
+    partial class UpgradedToAbp402
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

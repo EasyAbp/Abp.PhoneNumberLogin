@@ -6,7 +6,7 @@ using Volo.Abp.Identity;
 
 namespace EasyAbp.Abp.PhoneNumberLogin.Account
 {
-    [RemoteService(Name = "PhoneNumberLoginPhoneNumberLoginAccount")]
+    [RemoteService(Name = "EasyAbpAbpPhoneNumberLogin")]
     [ControllerName("Account")]
     [Route("/api/phone-number-login/account")]
     public class PhoneNumberLoginAccountController : PhoneNumberLoginController, IPhoneNumberLoginAccountAppService

@@ -1,4 +1,5 @@
 ﻿using EasyAbp.Abp.PhoneNumberLogin;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
 using PhoneNumberLoginSample.MultiTenancy;
@@ -14,6 +15,7 @@ using Volo.Abp.PermissionManagement.Identity;
 using Volo.Abp.PermissionManagement.IdentityServer;
 using Volo.Abp.SettingManagement;
 using Volo.Abp.TenantManagement;
+using IdentityUser = Volo.Abp.Identity.IdentityUser;
 
 namespace PhoneNumberLoginSample
 {
@@ -39,10 +41,15 @@ namespace PhoneNumberLoginSample
             {
                 options.IsEnabled = MultiTenancyConsts.IsEnabled;
             });
-
-#if DEBUG
+            
             context.Services.Replace(ServiceDescriptor.Singleton<IEmailSender, NullEmailSender>());
-#endif
+            context.Services.AddTransient<PhoneNumberTokenProvider<IdentityUser>>();
+            
+            Configure<IdentityOptions>(options =>
+            {
+                options.Tokens.ProviderMap.TryAdd(TokenOptions.DefaultPhoneProvider,
+                    new TokenProviderDescriptor(typeof(PhoneNumberTokenProvider<IdentityUser>)));
+            });
         }
     }
 }
