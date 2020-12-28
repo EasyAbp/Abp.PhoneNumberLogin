@@ -8,9 +8,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Volo.Abp.Ddd.Domain" Version="4.0.2" />
-    <PackageReference Include="Volo.Abp.Identity.Domain" Version="4.0.2" />
-    <PackageReference Include="Volo.Abp.IdentityServer.Domain" Version="4.0.2" />
+    <PackageReference Include="Volo.Abp.Ddd.Domain" Version="$(AbpVersion)" />
+    <PackageReference Include="Volo.Abp.Identity.Domain" Version="$(AbpVersion)" />
+    <PackageReference Include="Volo.Abp.IdentityServer.Domain" Version="$(AbpVersion)" />
     <ProjectReference Include="..\EasyAbp.Abp.PhoneNumberLogin.Domain.Shared\EasyAbp.Abp.PhoneNumberLogin.Domain.Shared.csproj" />
   </ItemGroup>
 
