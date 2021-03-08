@@ -1,0 +1,12 @@
+﻿{
+  "culture": "zh-Hant",
+  "texts": {
+    "EndPoint": "騰訊雲 API 端點地址",
+    "DefaultSecretId": "SecretId 默認值",
+    "DefaultSecretKey": "SecretKey 默認值",
+    "DefaultSmsSdkAppid": "SdkAppid 默認值",
+    "DefaultSign": "Sign 默認值",
+    "DefaultExtendCode": "ExtendCode 默認值",
+    "DefaultSenderId": "SenderId 默認值"
+  }
+}

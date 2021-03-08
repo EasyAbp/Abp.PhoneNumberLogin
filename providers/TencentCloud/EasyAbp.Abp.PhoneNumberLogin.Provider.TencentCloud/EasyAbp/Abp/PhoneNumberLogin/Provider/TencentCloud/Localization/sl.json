@@ -1,0 +1,12 @@
+﻿{
+  "culture": "sl",
+  "texts": {
+    "EndPoint": "TencentCloud API EndPoint",
+    "DefaultSecretId": "SecretId default value",
+    "DefaultSecretKey": "SecretKey default value",
+    "DefaultSmsSdkAppid": "SdkAppid default value",
+    "DefaultSign": "Sign default value",
+    "DefaultExtendCode": "ExtendCode default value",
+    "DefaultSenderId": "SenderId default value"
+  }
+}

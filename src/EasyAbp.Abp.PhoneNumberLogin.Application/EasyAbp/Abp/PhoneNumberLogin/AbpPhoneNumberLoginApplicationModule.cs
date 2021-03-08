@@ -2,7 +2,6 @@
 using Volo.Abp.AutoMapper;
 using Volo.Abp.Modularity;
 using Volo.Abp.Application;
-using Volo.Abp.Sms;
 
 namespace EasyAbp.Abp.PhoneNumberLogin
 {
@@ -10,7 +9,6 @@ namespace EasyAbp.Abp.PhoneNumberLogin
         typeof(AbpPhoneNumberLoginDomainModule),
         typeof(AbpPhoneNumberLoginApplicationContractsModule),
         typeof(AbpDddApplicationModule),
-        typeof(AbpSmsModule),
         typeof(AbpAutoMapperModule)
         )]
     public class AbpPhoneNumberLoginApplicationModule : AbpModule

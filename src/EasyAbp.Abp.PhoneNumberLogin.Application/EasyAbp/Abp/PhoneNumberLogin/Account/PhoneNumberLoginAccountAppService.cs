@@ -10,10 +10,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Identity;
-using Volo.Abp.Uow;
 using Microsoft.AspNetCore.Identity;
-using Volo.Abp.Sms;
-using System.Collections.Generic;
 
 namespace EasyAbp.Abp.PhoneNumberLogin.Account
 {
@@ -22,7 +19,7 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Account
         /// <summary>
         /// EasyAbpNotification 目前不支持没有用户的时候发送通知，所以先直接用 ISmsSender 发送短信
         /// </summary>
-        private readonly ISmsSender _smsSender;
+        private readonly IPhoneNumberLoginVerificationCodeSender _phoneNumberLoginVerificationCodeSender;
         private readonly IPhoneNumberLoginNewUserCreator _phoneNumberLoginNewUserCreator;
         private readonly IVerificationCodeManager _verificationCodeManager;
         private readonly IOptions<IdentityOptions> _identityOptions;
@@ -31,6 +28,7 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Account
         private readonly IHttpClientFactory _httpClientFactory;
         private readonly IConfiguration _configuration;
         public PhoneNumberLoginAccountAppService(
+            IPhoneNumberLoginVerificationCodeSender phoneNumberLoginVerificationCodeSender,
             IPhoneNumberLoginNewUserCreator phoneNumberLoginNewUserCreator,
             IUniquePhoneNumberIdentityUserRepository uniquePhoneNumberIdentityUserRepository,
             IVerificationCodeManager verificationCodeManager,
@@ -39,6 +37,7 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Account
             IConfiguration configuration,
             IdentityUserManager identityUserManager)
         {
+            _phoneNumberLoginVerificationCodeSender = phoneNumberLoginVerificationCodeSender;
             _phoneNumberLoginNewUserCreator = phoneNumberLoginNewUserCreator;
             _verificationCodeManager = verificationCodeManager;
             _uniquePhoneNumberIdentityUserRepository = uniquePhoneNumberIdentityUserRepository;
@@ -56,15 +55,9 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Account
                 codeCacheLifespan: TimeSpan.FromMinutes(3),
                 configuration: new VerificationCodeConfiguration());
 
-            var smsMessage = new SmsMessage(input.PhoneNumber, string.Empty);
+            var result = await _phoneNumberLoginVerificationCodeSender.SendAsync(input.PhoneNumber, code, input.VerificationCodeType);
 
-            smsMessage.Properties.Add("type", input.VerificationCodeType.ToString());
-
-            smsMessage.Properties.Add("code", code);
-
-            await _smsSender.SendAsync(smsMessage);
-
-            return new SendVerificationCodeResult(SendVerificationCodeResultType.Success);
+            return result ? new SendVerificationCodeResult(SendVerificationCodeResultType.Success) : new SendVerificationCodeResult(SendVerificationCodeResultType.SendsFailure);
         }
 
         public virtual async Task<IdentityUserDto> RegisterAsync(RegisterWithPhoneNumberInput input)
@@ -73,7 +66,7 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Account
 
             if (!result)
             {
-               throw new InvalidVerificationCodeException();
+                throw new InvalidVerificationCodeException();
             }
 
             var identityUser = await _phoneNumberLoginNewUserCreator.CreateAsync(input.PhoneNumber, input.UserName, input.Password, input.EmailAddress);
@@ -100,7 +93,7 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Account
             (await _identityUserManager.UpdateAsync(identityUser)).CheckErrors();
 
             return new ConfirmPhoneNumberResult(ConfirmPhoneNumberResultType.Success);
-                
+
         }
 
         public virtual async Task ResetPasswordAsync(ResetPasswordWithPhoneNumberInput input)
