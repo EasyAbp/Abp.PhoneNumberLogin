@@ -20,9 +20,9 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Identity
             CancellationToken cancellationToken = default)
         {
             return includeDetails
-                ? await WithDetails().FirstOrDefaultAsync(e => e.PhoneNumber == phoneNumber,
+                ? await (await WithDetailsAsync()).FirstOrDefaultAsync(e => e.PhoneNumber == phoneNumber,
                     GetCancellationToken(cancellationToken))
-                : await DbSet.FirstOrDefaultAsync(x => x.PhoneNumber == phoneNumber,
+                : await (await GetDbSetAsync()).FirstOrDefaultAsync(x => x.PhoneNumber == phoneNumber,
                     GetCancellationToken(cancellationToken));
         }
 
