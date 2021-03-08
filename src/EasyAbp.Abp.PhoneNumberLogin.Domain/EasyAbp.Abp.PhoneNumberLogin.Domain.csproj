@@ -8,6 +8,8 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="EasyAbp.Abp.VerificationCode" Version="0.2.2" />
+    <PackageReference Include="EasyAbp.Abp.VerificationCode.Identity" Version="0.2.2" />
     <PackageReference Include="Volo.Abp.Ddd.Domain" Version="$(AbpVersion)" />
     <PackageReference Include="Volo.Abp.Identity.Domain" Version="$(AbpVersion)" />
     <PackageReference Include="Volo.Abp.IdentityServer.Domain" Version="$(AbpVersion)" />

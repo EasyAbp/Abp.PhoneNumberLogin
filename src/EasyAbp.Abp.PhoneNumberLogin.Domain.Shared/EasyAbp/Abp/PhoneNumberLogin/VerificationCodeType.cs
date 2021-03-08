@@ -1,4 +1,4 @@
-﻿namespace EasyAbp.Abp.PhoneNumberLogin.Account.Dtos
+﻿namespace EasyAbp.Abp.PhoneNumberLogin
 {
     public enum VerificationCodeType : byte
     {

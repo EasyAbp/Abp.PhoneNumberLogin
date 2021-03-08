@@ -8,5 +8,10 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Account.Dtos
         public ConfirmPhoneNumberResultType Result { get; }
 
         public string Description => Result.ToString();
+
+        public ConfirmPhoneNumberResult(ConfirmPhoneNumberResultType result)
+        {
+            Result = result;
+        }
     }
 }
