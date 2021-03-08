@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Volo.Abp.Sms" Version="$(AbpVersion)" />
     <PackageReference Include="Volo.Abp.AutoMapper" Version="$(AbpVersion)" />
     <PackageReference Include="Volo.Abp.Ddd.Application" Version="$(AbpVersion)" />
     <ProjectReference Include="..\EasyAbp.Abp.PhoneNumberLogin.Application.Contracts\EasyAbp.Abp.PhoneNumberLogin.Application.Contracts.csproj" />

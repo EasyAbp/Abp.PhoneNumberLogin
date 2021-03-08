@@ -12,11 +12,17 @@ using Volo.Abp.Application.Services;
 using Volo.Abp.Identity;
 using Volo.Abp.Uow;
 using Microsoft.AspNetCore.Identity;
+using Volo.Abp.Sms;
+using System.Collections.Generic;
 
 namespace EasyAbp.Abp.PhoneNumberLogin.Account
 {
     public class PhoneNumberLoginAccountAppService : ApplicationService, IPhoneNumberLoginAccountAppService
     {
+        /// <summary>
+        /// EasyAbpNotification 目前不支持没有用户的时候发送通知，所以先直接用 ISmsSender 发送短信
+        /// </summary>
+        private readonly ISmsSender _smsSender;
         private readonly IPhoneNumberLoginNewUserCreator _phoneNumberLoginNewUserCreator;
         private readonly IVerificationCodeManager _verificationCodeManager;
         private readonly IOptions<IdentityOptions> _identityOptions;
@@ -50,9 +56,15 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Account
                 codeCacheLifespan: TimeSpan.FromMinutes(3),
                 configuration: new VerificationCodeConfiguration());
 
-            //await _smsSender.SendAsync(new SmsMessage(phoneNumber, $"Your code is: {code}"));
+            var smsMessage = new SmsMessage(input.PhoneNumber, string.Empty);
 
-            throw new System.NotImplementedException();
+            smsMessage.Properties.Add("type", input.VerificationCodeType.ToString());
+
+            smsMessage.Properties.Add("code", code);
+
+            await _smsSender.SendAsync(smsMessage);
+
+            return new SendVerificationCodeResult(SendVerificationCodeResultType.Success);
         }
 
         public virtual async Task<IdentityUserDto> RegisterAsync(RegisterWithPhoneNumberInput input)
