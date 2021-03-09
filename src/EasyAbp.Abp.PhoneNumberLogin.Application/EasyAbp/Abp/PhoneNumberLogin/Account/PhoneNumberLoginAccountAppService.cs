@@ -115,6 +115,7 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Account
 
         public virtual async Task ResetPasswordAsync(ResetPasswordWithPhoneNumberInput input)
         {
+            await _identityOptions.SetAsync();
 
             var identityUser = await _uniquePhoneNumberIdentityUserRepository.GetByConfirmedPhoneNumberAsync(input.PhoneNumber);
 
