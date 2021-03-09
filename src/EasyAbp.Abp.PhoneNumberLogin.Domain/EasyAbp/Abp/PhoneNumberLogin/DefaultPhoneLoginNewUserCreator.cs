@@ -46,6 +46,8 @@ namespace EasyAbp.Abp.PhoneNumberLogin
                 (await _identityUserManager.AddPasswordAsync(identityUser, password)).CheckErrors();
             }
 
+            identityUser.Name = userName ?? phoneNumber;
+
             (await _identityUserManager.UpdateAsync(identityUser)).CheckErrors();
 
             (await _identityUserManager.AddDefaultRolesAsync(identityUser)).CheckErrors();
