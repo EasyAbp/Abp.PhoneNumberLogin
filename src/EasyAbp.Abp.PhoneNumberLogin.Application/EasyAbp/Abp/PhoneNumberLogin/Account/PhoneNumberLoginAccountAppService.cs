@@ -11,6 +11,8 @@ using Microsoft.Extensions.Options;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Identity;
 using Microsoft.AspNetCore.Identity;
+using Volo.Abp.Settings;
+using EasyAbp.Abp.PhoneNumberLogin.Settings;
 
 namespace EasyAbp.Abp.PhoneNumberLogin.Account
 {
@@ -27,6 +29,7 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Account
         private readonly IUniquePhoneNumberIdentityUserRepository _uniquePhoneNumberIdentityUserRepository;
         private readonly IHttpClientFactory _httpClientFactory;
         private readonly IConfiguration _configuration;
+        private readonly ISettingProvider _settingProvider;
         public PhoneNumberLoginAccountAppService(
             IPhoneNumberLoginVerificationCodeSender phoneNumberLoginVerificationCodeSender,
             IPhoneNumberLoginNewUserCreator phoneNumberLoginNewUserCreator,
@@ -35,6 +38,7 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Account
             IOptions<IdentityOptions> identityOptions,
             IHttpClientFactory httpClientFactory,
             IConfiguration configuration,
+            ISettingProvider settingProvider,
             IdentityUserManager identityUserManager)
         {
             _phoneNumberLoginVerificationCodeSender = phoneNumberLoginVerificationCodeSender;
@@ -44,6 +48,7 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Account
             _identityOptions = identityOptions;
             _identityUserManager = identityUserManager;
             _httpClientFactory = httpClientFactory;
+            _settingProvider = settingProvider;
             _configuration = configuration;
         }
 
@@ -52,7 +57,7 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Account
         {
             var code = await _verificationCodeManager.GenerateAsync(
                 codeCacheKey: $"{PhoneNumberLoginConsts.VerificationCodeCachePrefix}:{input.VerificationCodeType}:{input.PhoneNumber}",
-                codeCacheLifespan: TimeSpan.FromMinutes(3),
+                codeCacheLifespan: TimeSpan.FromMinutes(await GetCacheTime()),
                 configuration: new VerificationCodeConfiguration());
 
             var result = await _phoneNumberLoginVerificationCodeSender.SendAsync(input.PhoneNumber, code, input.VerificationCodeType);
@@ -107,7 +112,7 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Account
 
         public virtual async Task<string> RequestTokenByPasswordAsync(RequestTokenByPasswordInput input)
         {
-            return (await RequestIds4LoginByCodeAsync(input.PhoneNumber, input.Password))?.Raw;
+            return (await RequestIds4LoginByPasswordAsync(input.PhoneNumber, input.Password))?.Raw;
         }
 
         public virtual async Task<string> RequestTokenByVerificationCodeAsync(RequestTokenByVerificationCodeInput input)
@@ -198,6 +203,11 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Account
         protected virtual string GetTenantHeaderName()
         {
             return "__tenant";
+        }
+
+        protected virtual async Task<int> GetCacheTime()
+        {
+            return await _settingProvider.GetAsync(PhoneNumberLoginSettings.CacheTime, 5);
         }
     }
 }

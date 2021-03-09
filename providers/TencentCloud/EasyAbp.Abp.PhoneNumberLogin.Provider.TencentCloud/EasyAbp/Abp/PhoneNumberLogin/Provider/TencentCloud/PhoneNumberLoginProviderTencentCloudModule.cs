@@ -18,8 +18,6 @@
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
 
-            context.Services.Replace(ServiceDescriptor.Singleton<IPhoneNumberLoginVerificationCodeSender, TencentCloudPhoneNumberLoginVerificationCodeSender>());
-
             Configure<AbpVirtualFileSystemOptions>(options =>
             {
                 options.FileSets.AddEmbedded<PhoneNumberLoginProviderTencentCloudModule>();
@@ -37,6 +35,11 @@
             {
                 options.MapCodeNamespace("EasyAbp.Abp.PhoneNumberLogin.Provider.TencentCloud", typeof(PhoneNumberLoginProviderTencentCloudResource));
             });
+        }
+
+        public override void PostConfigureServices(ServiceConfigurationContext context)
+        {
+            context.Services.Replace(ServiceDescriptor.Singleton<IPhoneNumberLoginVerificationCodeSender, TencentCloudPhoneNumberLoginVerificationCodeSender>());
         }
     }
 }
