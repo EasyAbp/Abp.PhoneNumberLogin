@@ -13,6 +13,8 @@ using Volo.Abp.Identity;
 using Microsoft.AspNetCore.Identity;
 using Volo.Abp.Settings;
 using EasyAbp.Abp.PhoneNumberLogin.Settings;
+using IdentityServer4.Configuration;
+using Volo.Abp.Uow;
 
 namespace EasyAbp.Abp.PhoneNumberLogin.Account
 {
@@ -55,10 +57,20 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Account
 
         public virtual async Task<SendVerificationCodeResult> SendVerificationCodeAsync(SendVerificationCodeInput input)
         {
-            var code = await _verificationCodeManager.GenerateAsync(
-                codeCacheKey: $"{PhoneNumberLoginConsts.VerificationCodeCachePrefix}:{input.VerificationCodeType}:{input.PhoneNumber}",
-                codeCacheLifespan: TimeSpan.FromMinutes(await GetCacheTime()),
-                configuration: new VerificationCodeConfiguration());
+            string code;
+            switch (input.VerificationCodeType)
+            {
+                case VerificationCodeType.ResetPassword:
+                    var user = await _uniquePhoneNumberIdentityUserRepository.GetByConfirmedPhoneNumberAsync(input.PhoneNumber);
+                    code = await _identityUserManager.GeneratePasswordResetTokenAsync(user);
+                    break;
+                default:
+                    code = await _verificationCodeManager.GenerateAsync(
+                        codeCacheKey: $"{PhoneNumberLoginConsts.VerificationCodeCachePrefix}:{input.VerificationCodeType}:{input.PhoneNumber}",
+                        codeCacheLifespan: TimeSpan.FromMinutes(await GetCacheTime()),
+                        configuration: new VerificationCodeConfiguration());
+                    break;
+            }
 
             var result = await _phoneNumberLoginVerificationCodeSender.SendAsync(input.PhoneNumber, code, input.VerificationCodeType);
 
@@ -108,6 +120,42 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Account
 
             (await _identityUserManager.ResetPasswordAsync(identityUser, input.VerificationCode, input.Password)).CheckErrors();
 
+        }
+
+        public virtual async Task<LoginResult> LoginAsync(LoginInput input)
+        {
+            await _identityOptions.SetAsync();
+
+            string code = input.VerificationCode;
+
+            bool registerUser = false;
+
+            var identityUser =
+                await _uniquePhoneNumberIdentityUserRepository.FindByConfirmedPhoneNumberAsync(input.PhoneNumber);
+
+            if (identityUser is null)
+            {
+
+                var result = await GetValidateResultAsync(input.PhoneNumber, input.VerificationCode, VerificationCodeType.Login);
+
+                if (!result)
+                {
+                    throw new InvalidVerificationCodeException();
+                }
+
+                await _phoneNumberLoginNewUserCreator.CreateAsync(input.PhoneNumber, input.UserName, input.Password, input.EmailAddress);
+                code = await _verificationCodeManager.GenerateAsync(
+                    codeCacheKey: $"{PhoneNumberLoginConsts.VerificationCodeCachePrefix}:{VerificationCodeType.Login}:{input.PhoneNumber}",
+                    codeCacheLifespan: TimeSpan.FromMinutes(await GetCacheTime()),
+                    configuration: new VerificationCodeConfiguration());
+                registerUser = true;
+
+            }
+
+            return new LoginResult(
+                registerUser ? LoginResultType.Register : LoginResultType.Login,
+                (await RequestIds4LoginByCodeAsync(input.PhoneNumber, code))?.Raw,
+                CurrentTenant.Id);
         }
 
         public virtual async Task<string> RequestTokenByPasswordAsync(RequestTokenByPasswordInput input)
