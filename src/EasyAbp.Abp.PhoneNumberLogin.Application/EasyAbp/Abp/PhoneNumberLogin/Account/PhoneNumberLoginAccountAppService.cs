@@ -142,12 +142,18 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Account
                 {
                     throw new InvalidVerificationCodeException();
                 }
+                using (var uow = UnitOfWorkManager.Begin(new AbpUnitOfWorkOptions(true), true))
+                {
+                    await _phoneNumberLoginNewUserCreator.CreateAsync(input.PhoneNumber, input.UserName, input.Password, input.EmailAddress);
 
-                await _phoneNumberLoginNewUserCreator.CreateAsync(input.PhoneNumber, input.UserName, input.Password, input.EmailAddress);
+                    await uow.CompleteAsync();
+                }
+
                 code = await _verificationCodeManager.GenerateAsync(
                     codeCacheKey: $"{PhoneNumberLoginConsts.VerificationCodeCachePrefix}:{VerificationCodeType.Login}:{input.PhoneNumber}",
                     codeCacheLifespan: TimeSpan.FromMinutes(await GetCacheTime()),
                     configuration: new VerificationCodeConfiguration());
+
                 registerUser = true;
 
             }
