@@ -1,7 +1,4 @@
 ﻿using EasyAbp.Abp.PhoneNumberLogin.Provider.TencentCloud.Localization;
-using EasyAbp.Abp.Sms.TencentCloud.Localization;
-using EasyAbp.Abp.TencentCloud.Common;
-using EasyAbp.Abp.TencentCloud.Sms;
 using Microsoft.Extensions.Options;
 using Volo.Abp.Localization;
 using Volo.Abp.Settings;
@@ -17,12 +14,12 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Provider.TencentCloud.Settings
         {
             _phoneNumberLoginProviderTencentCloudOptions = phoneNumberLoginProviderTencentCloudOptions.Value;
         }
-        
+
         public override void Define(ISettingDefinitionContext context)
         {
             //Define your own settings here. Example:
             //context.Add(new SettingDefinition(DenturePlusSettings.MySetting1));
-            
+
             context.Add(new SettingDefinition(
                 PhoneNumberLoginProviderTencentCloudSettings.LoginTemplateId,
                 _phoneNumberLoginProviderTencentCloudOptions.LoginTemplateId,
@@ -32,24 +29,23 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Provider.TencentCloud.Settings
                 PhoneNumberLoginProviderTencentCloudSettings.RegisterTemplateId,
                 _phoneNumberLoginProviderTencentCloudOptions.RegisterTemplateId,
                 L("RegisterTemplateId")));
-            
+
             context.Add(new SettingDefinition(
                 PhoneNumberLoginProviderTencentCloudSettings.ConfirmTemplateId,
                 _phoneNumberLoginProviderTencentCloudOptions.ConfirmTemplateId,
                 L("ConfirmTemplateId")));
-            
+
             context.Add(new SettingDefinition(
                 PhoneNumberLoginProviderTencentCloudSettings.ResetPasswordTemplateId,
                 _phoneNumberLoginProviderTencentCloudOptions.ResetPasswordTemplateId,
                 L("ResetPasswordTemplateId")));
 
             context.Add(new SettingDefinition(
-                PhoneNumberLoginProviderTencentCloudSettings.DefaultCountryCode,
+                PhoneNumberLoginProviderTencentCloudSettings.DefaultCountryCode ??
                 "86",
-                L("DefaultCountryCode")));
-
+                displayName: L("DefaultCountryCode")));
         }
-        
+
         private static LocalizableString L(string name)
         {
             return LocalizableString.Create<PhoneNumberLoginProviderTencentCloudResource>(name);

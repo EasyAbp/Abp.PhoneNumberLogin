@@ -6,8 +6,12 @@
 
         public const string GrantType = "PhoneNumberLogin_credentials";
 
-        public const string IdentityServerHttpClientName = "EasyAbpPhoneNumberLogin";
+        public const string IdentityServerHttpClientName = "EasyAbpAbpPhoneNumberLogin";
 
         public const string VerificationCodeCachePrefix = "PhoneNumberLoginVerificationCode";
+
+        public const string LoginPurposeName = "LoginByPhoneNumber";
+
+        public const string ConfirmPurposeName = "ConfirmPhoneNumber";
     }
 }

@@ -7,7 +7,7 @@ using Volo.Abp.DependencyInjection;
 
 namespace EasyAbp.Abp.PhoneNumberLogin
 {
-    public class INullPhoneNumberLoginVerificationCodeSender : IPhoneNumberLoginVerificationCodeSender, ITransientDependency
+    public class NullPhoneNumberLoginVerificationCodeSender : IPhoneNumberLoginVerificationCodeSender, ITransientDependency
     {
         public Task<bool> SendAsync(string phoneNumber, string code, VerificationCodeType type, string message = null)
         {

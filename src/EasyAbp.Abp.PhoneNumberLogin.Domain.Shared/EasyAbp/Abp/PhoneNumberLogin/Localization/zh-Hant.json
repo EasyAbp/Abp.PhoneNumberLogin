@@ -5,6 +5,8 @@
     "DuplicatePhoneNumber": "手機號已經被使用了",
     "PhoneNumberStartsWithZero": "手機號不能以 0 開頭",
     "NonNumericPhoneNumber": "不可為非數字手機號",
-    "Permission:UserLookup": "使用者查詢"
+    "Permission:UserLookup": "使用者查詢",
+    "RegisterCodeCacheSeconds": "註冊驗證碼緩存時間（秒）",
+    "EasyAbp.Abp.PhoneNumberLogin:InvalidVerificationCode": "無效的驗證碼"
   }
 }

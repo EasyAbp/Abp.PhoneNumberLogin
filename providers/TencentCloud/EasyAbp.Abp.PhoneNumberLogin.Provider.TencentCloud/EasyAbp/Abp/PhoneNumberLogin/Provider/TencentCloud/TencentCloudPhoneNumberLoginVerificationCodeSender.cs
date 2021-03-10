@@ -1,10 +1,10 @@
-﻿namespace EasyAbp.Abp.PhoneNumberLogin.Provider.TencentCloud
+﻿using EasyAbp.Abp.PhoneNumberLogin.Provider.TencentCloud.Settings;
+using EasyAbp.Abp.Sms.TencentCloud;
+using System.Threading.Tasks;
+using Volo.Abp.Settings;
+using Volo.Abp.Sms;
+namespace EasyAbp.Abp.PhoneNumberLogin.Provider.TencentCloud
 {
-    using EasyAbp.Abp.PhoneNumberLogin.Provider.TencentCloud.Settings;
-    using EasyAbp.Abp.Sms.TencentCloud;
-    using System.Threading.Tasks;
-    using Volo.Abp.Settings;
-    using Volo.Abp.Sms;
     public class TencentCloudPhoneNumberLoginVerificationCodeSender : IPhoneNumberLoginVerificationCodeSender
     {
         private readonly ISmsSender _smsSender;
@@ -59,7 +59,7 @@
                 return phoneNumber;
             }
 
-            var countryCode = await _settingProvider.GetOrNullAsync(PhoneNumberLoginProviderTencentCloudSettings.DefaultCountryCode) ?? "86";
+            var countryCode = await _settingProvider.GetOrNullAsync(PhoneNumberLoginProviderTencentCloudSettings.DefaultCountryCode);
 
             return $"+{countryCode}{phoneNumber}";
         }

@@ -1,8 +1,10 @@
 ﻿using EasyAbp.Abp.PhoneNumberLogin.Identity;
+using EasyAbp.Abp.PhoneNumberLogin.Localization;
 using EasyAbp.Abp.VerificationCode;
 using IdentityServer4.Models;
 using IdentityServer4.Validation;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Options;
 using System;
 using System.Collections.Generic;
@@ -19,17 +21,17 @@ namespace EasyAbp.Abp.PhoneNumberLogin
     {
         public string GrantType => PhoneNumberLoginConsts.GrantType;
 
+        private readonly IStringLocalizer<PhoneNumberLoginResource> _localizer;
         private readonly IOptions<IdentityOptions> _identityOptions;
         private readonly IUniquePhoneNumberIdentityUserRepository _uniquePhoneNumberIdentityUserRepository;
         private readonly IdentityUserManager _identityUserManager;
-        private readonly IVerificationCodeManager _verificationCodeManager;
         public PhoneNumberGrantValidator(
-            IVerificationCodeManager verificationCodeManager,
+            IStringLocalizer<PhoneNumberLoginResource> localizer,
             IdentityUserManager identityUserManager,
             IOptions<IdentityOptions> identityOptions,
             IUniquePhoneNumberIdentityUserRepository uniquePhoneNumberIdentityUserRepository)
         {
-            _verificationCodeManager = verificationCodeManager;
+            _localizer = localizer;
             _identityUserManager = identityUserManager;
             _identityOptions = identityOptions;
             _uniquePhoneNumberIdentityUserRepository = uniquePhoneNumberIdentityUserRepository;
@@ -47,8 +49,8 @@ namespace EasyAbp.Abp.PhoneNumberLogin
             {
                 context.Result = new GrantValidationResult(TokenRequestErrors.InvalidGrant)
                 {
-                    ErrorDescription = "请提供有效的电话号码"
-                };
+                    ErrorDescription = _localizer["InvalidPhoneNumber"]
+            };
 
                 return;
             }
@@ -57,7 +59,7 @@ namespace EasyAbp.Abp.PhoneNumberLogin
             {
                 context.Result = new GrantValidationResult(TokenRequestErrors.InvalidGrant)
                 {
-                    ErrorDescription = "请提供有效的密码或验证码"
+                    ErrorDescription = _localizer["InvalidCredential"]
                 };
 
                 return;
@@ -67,16 +69,13 @@ namespace EasyAbp.Abp.PhoneNumberLogin
 
             if (password.IsNullOrWhiteSpace())
             {
-                bool result = await _verificationCodeManager.ValidateAsync(
-                codeCacheKey: $"{PhoneNumberLoginConsts.VerificationCodeCachePrefix}:{VerificationCodeType.Login}:{phonenumber}",
-                verificationCode: code,
-                configuration: new VerificationCodeConfiguration());
+                var result = await _identityUserManager.VerifyUserTokenAsync(identityUser, TokenOptions.DefaultPhoneProvider, PhoneNumberLoginConsts.LoginPurposeName, code);
 
                 if (!result)
                 {
                     context.Result = new GrantValidationResult(TokenRequestErrors.InvalidGrant)
                     {
-                        ErrorDescription = "验证码无效"
+                        ErrorDescription = _localizer["InvalidVerificationCode"]
                     };
 
                     return;
@@ -90,7 +89,7 @@ namespace EasyAbp.Abp.PhoneNumberLogin
                 {
                     context.Result = new GrantValidationResult(TokenRequestErrors.InvalidGrant)
                     {
-                        ErrorDescription = "密码无效"
+                        ErrorDescription = _localizer["InvalidPassword"]
                     };
 
                     return;

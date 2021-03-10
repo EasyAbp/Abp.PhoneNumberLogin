@@ -1,5 +1,5 @@
 ﻿using EasyAbp.Abp.PhoneNumberLogin.Identity;
-using EasyAbp.Abp.VerificationCode.Identity;
+using EasyAbp.Abp.VerificationCode;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
@@ -13,8 +13,8 @@ namespace EasyAbp.Abp.PhoneNumberLogin
 {
     [DependsOn(
         typeof(AbpDddDomainModule),
+        typeof(AbpVerificationCodeModule),
         typeof(AbpIdentityDomainModule),
-        typeof(AbpVerificationCodeIdentityModule),
         typeof(AbpIdentityServerDomainModule),
         typeof(AbpPhoneNumberLoginDomainSharedModule)
     )]
@@ -27,12 +27,12 @@ namespace EasyAbp.Abp.PhoneNumberLogin
                 builder.AddExtensionGrantValidator<PhoneNumberGrantValidator>();
             });
         }
+
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
             context.Services.TryAddTransient<IPhoneNumberLoginNewUserCreator, DefaultPhoneLoginNewUserCreator>();
             context.Services.TryAddTransient<UniquePhoneNumberUserValidator>();
             context.Services.AddTransient<IUserValidator<IdentityUser>, UniquePhoneNumberUserValidator>();
-
         }
     }
 }

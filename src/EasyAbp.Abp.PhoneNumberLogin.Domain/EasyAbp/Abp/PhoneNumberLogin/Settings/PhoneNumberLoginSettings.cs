@@ -4,6 +4,6 @@
     {
         public const string GroupName = "EasyAbp.Abp.PhoneNumberLogin";
 
-        public const string CacheTime = GroupName + ".CacheTime";
+        public const string RegisterCodeCacheSeconds = GroupName + ".RegisterCodeCacheSeconds";
     }
 }

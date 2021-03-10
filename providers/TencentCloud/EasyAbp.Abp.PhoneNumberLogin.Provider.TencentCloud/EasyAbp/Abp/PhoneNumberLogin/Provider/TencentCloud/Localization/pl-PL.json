@@ -1,12 +1,10 @@
 ﻿{
   "culture": "pl-PL",
   "texts": {
-    "EndPoint": "TencentCloud API EndPoint",
-    "DefaultSecretId": "SecretId default value",
-    "DefaultSecretKey": "SecretKey default value",
-    "DefaultSmsSdkAppid": "SdkAppid default value",
-    "DefaultSign": "Sign default value",
-    "DefaultExtendCode": "ExtendCode default value",
-    "DefaultSenderId": "SenderId default value"
+    "LoginTemplateId": "Login Template ID",
+    "RegisterTemplateId": "Refister Template ID",
+    "ConfirmTemplateId": "Confirm Template ID",
+    "ResetPasswordTemplateId": "Reset Password Template ID",
+    "DefaultCountryCode": "Default Country Code"
   }
 }

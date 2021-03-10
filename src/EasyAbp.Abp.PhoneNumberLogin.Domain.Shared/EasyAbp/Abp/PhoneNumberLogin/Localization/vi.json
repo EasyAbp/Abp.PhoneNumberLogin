@@ -5,6 +5,8 @@
     "DuplicatePhoneNumber": "The phone number has been used by others",
     "PhoneNumberStartsWithZero": "Phone number can not start with 0",
     "NonNumericPhoneNumber": "Non-numeric phone number is not allowed",
-    "Permission:UserLookup": "User lookup"
+    "Permission:UserLookup": "User lookup",
+    "RegisterCodeCacheSeconds": "Register Verification Code Cache Time In Seconds",
+    "EasyAbp.Abp.PhoneNumberLogin:InvalidVerificationCode": "Invalid Verification Code"
   }
 }

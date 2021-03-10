@@ -2,9 +2,9 @@
 
 namespace EasyAbp.Abp.PhoneNumberLogin
 {
-    public class InvalidVerificationCodeException : UserFriendlyException
+    public class InvalidVerificationCodeException : BusinessException
     {
-        public InvalidVerificationCodeException() : base("验证码不正确", "InvalidVerificationCode")
+        public InvalidVerificationCodeException() : base(PhoneNumberLoginErrorCodes.InvalidVerificationCode)
         {
             
         }

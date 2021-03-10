@@ -20,9 +20,7 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Account
 {
     public class PhoneNumberLoginAccountAppService : ApplicationService, IPhoneNumberLoginAccountAppService
     {
-        /// <summary>
-        /// EasyAbpNotification 目前不支持没有用户的时候发送通知，所以先直接用 ISmsSender 发送短信
-        /// </summary>
+
         private readonly IPhoneNumberLoginVerificationCodeSender _phoneNumberLoginVerificationCodeSender;
         private readonly IPhoneNumberLoginNewUserCreator _phoneNumberLoginNewUserCreator;
         private readonly IVerificationCodeManager _verificationCodeManager;
@@ -57,20 +55,14 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Account
 
         public virtual async Task<SendVerificationCodeResult> SendVerificationCodeAsync(SendVerificationCodeInput input)
         {
-            string code;
-            switch (input.VerificationCodeType)
+            var identityUser = await _uniquePhoneNumberIdentityUserRepository.GetByConfirmedPhoneNumberAsync(input.PhoneNumber);
+
+            if (identityUser != null && input.VerificationCodeType == VerificationCodeType.Register)
             {
-                case VerificationCodeType.ResetPassword:
-                    var user = await _uniquePhoneNumberIdentityUserRepository.GetByConfirmedPhoneNumberAsync(input.PhoneNumber);
-                    code = await _identityUserManager.GeneratePasswordResetTokenAsync(user);
-                    break;
-                default:
-                    code = await _verificationCodeManager.GenerateAsync(
-                        codeCacheKey: $"{PhoneNumberLoginConsts.VerificationCodeCachePrefix}:{input.VerificationCodeType}:{input.PhoneNumber}",
-                        codeCacheLifespan: TimeSpan.FromMinutes(await GetCacheTime()),
-                        configuration: new VerificationCodeConfiguration());
-                    break;
+                return new SendVerificationCodeResult(SendVerificationCodeResultType.SendsFailure);
             }
+
+            string code = await GenerateCodeAsync(input.PhoneNumber, input.VerificationCodeType, identityUser);
 
             var result = await _phoneNumberLoginVerificationCodeSender.SendAsync(input.PhoneNumber, code, input.VerificationCodeType);
 
@@ -93,17 +85,15 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Account
 
         public virtual async Task<ConfirmPhoneNumberResult> ConfirmPhoneNumberAsync(ConfirmPhoneNumberInput input)
         {
-            var result = await _verificationCodeManager.ValidateAsync(
-                codeCacheKey: $"{PhoneNumberLoginConsts.VerificationCodeCachePrefix}:{VerificationCodeType.Confirm}:{input.PhoneNumber}",
-                verificationCode: input.VerificationCode,
-                configuration: new VerificationCodeConfiguration());
+
+            var identityUser = await _uniquePhoneNumberIdentityUserRepository.GetByConfirmedPhoneNumberAsync(input.PhoneNumber);
+
+            var result = await _identityUserManager.VerifyUserTokenAsync(identityUser, TokenOptions.DefaultPhoneProvider, PhoneNumberLoginConsts.ConfirmPurposeName, input.VerificationCode);
 
             if (!result)
             {
                 return new ConfirmPhoneNumberResult(ConfirmPhoneNumberResultType.WrongVerificationCode);
             }
-
-            var identityUser = await _uniquePhoneNumberIdentityUserRepository.GetByConfirmedPhoneNumberAsync(input.PhoneNumber);
 
             identityUser.SetPhoneNumberConfirmed(true);
 
@@ -123,7 +113,7 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Account
 
         }
 
-        public virtual async Task<LoginResult> LoginAsync(LoginInput input)
+        public virtual async Task<LoginResult> TryRegisterAndRequestTokenAsync(LoginInput input)
         {
             await _identityOptions.SetAsync();
 
@@ -136,24 +126,21 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Account
 
             if (identityUser is null)
             {
-
-                var result = await GetValidateResultAsync(input.PhoneNumber, input.VerificationCode, VerificationCodeType.Login);
+                var result = await GetValidateResultAsync(input.PhoneNumber, input.VerificationCode, VerificationCodeType.Register);
 
                 if (!result)
                 {
                     throw new InvalidVerificationCodeException();
                 }
+
                 using (var uow = UnitOfWorkManager.Begin(new AbpUnitOfWorkOptions(true), true))
                 {
-                    await _phoneNumberLoginNewUserCreator.CreateAsync(input.PhoneNumber, input.UserName, input.Password, input.EmailAddress);
+                    identityUser = await _phoneNumberLoginNewUserCreator.CreateAsync(input.PhoneNumber, input.UserName, input.Password, input.EmailAddress);
 
                     await uow.CompleteAsync();
                 }
 
-                code = await _verificationCodeManager.GenerateAsync(
-                    codeCacheKey: $"{PhoneNumberLoginConsts.VerificationCodeCachePrefix}:{VerificationCodeType.Login}:{input.PhoneNumber}",
-                    codeCacheLifespan: TimeSpan.FromMinutes(await GetCacheTime()),
-                    configuration: new VerificationCodeConfiguration());
+                code = await GenerateCodeAsync(input.PhoneNumber, VerificationCodeType.Login, identityUser);
 
                 registerUser = true;
 
@@ -262,7 +249,39 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Account
 
         protected virtual async Task<int> GetCacheTime()
         {
-            return await _settingProvider.GetAsync(PhoneNumberLoginSettings.CacheTime, 5);
+            return await _settingProvider.GetAsync(PhoneNumberLoginSettings.RegisterCodeCacheSeconds, 5);
+        }
+
+        protected virtual async Task<string> GenerateCodeAsync(string phoneNumber, VerificationCodeType type, IdentityUser identityUser = null)
+        {
+            string code = string.Empty;
+
+            switch (type)
+            {
+                case VerificationCodeType.ResetPassword:
+                    code = await _identityUserManager.GeneratePasswordResetTokenAsync(identityUser);
+                    break;
+
+                case VerificationCodeType.Register:
+
+                    code = await _verificationCodeManager.GenerateAsync(
+                        codeCacheKey: $"{PhoneNumberLoginConsts.VerificationCodeCachePrefix}:{type}:{phoneNumber}",
+                        codeCacheLifespan: TimeSpan.FromMinutes(await GetCacheTime()),
+                        configuration: new VerificationCodeConfiguration());
+                    break;
+
+                case VerificationCodeType.Login:
+
+                    code = await _identityUserManager.GenerateUserTokenAsync(identityUser, TokenOptions.DefaultPhoneProvider, PhoneNumberLoginConsts.LoginPurposeName);
+                    break;
+
+                case VerificationCodeType.Confirm:
+
+                    code = await _identityUserManager.GenerateUserTokenAsync(identityUser, TokenOptions.DefaultPhoneProvider, PhoneNumberLoginConsts.ConfirmPurposeName);
+                    break;
+            }
+
+            return code;
         }
     }
 }

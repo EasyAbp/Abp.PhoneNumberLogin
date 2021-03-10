@@ -9,9 +9,9 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Settings
         public override void Define(ISettingDefinitionContext context)
         {
             context.Add(new SettingDefinition(
-                PhoneNumberLoginSettings.CacheTime,
-                "5",
-                L("CacheTime")));
+                PhoneNumberLoginSettings.RegisterCodeCacheSeconds,
+                "300",
+                L("RegisterCodeCacheSeconds")));
         }
 
         private static LocalizableString L(string name)
