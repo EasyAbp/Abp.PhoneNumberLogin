@@ -1,26 +1,24 @@
-﻿using System;
-using System.Net.Http;
-using System.Threading.Tasks;
-using EasyAbp.Abp.PhoneNumberLogin.Account.Dtos;
+﻿using EasyAbp.Abp.PhoneNumberLogin.Account.Dtos;
 using EasyAbp.Abp.PhoneNumberLogin.Identity;
+using EasyAbp.Abp.PhoneNumberLogin.Settings;
 using EasyAbp.Abp.VerificationCode;
 using IdentityModel.Client;
-using IdentityUser = Volo.Abp.Identity.IdentityUser;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
+using System;
+using System.Net.Http;
+using System.Threading.Tasks;
 using Volo.Abp.Application.Services;
 using Volo.Abp.Identity;
-using Microsoft.AspNetCore.Identity;
 using Volo.Abp.Settings;
-using EasyAbp.Abp.PhoneNumberLogin.Settings;
-using IdentityServer4.Configuration;
 using Volo.Abp.Uow;
+using IdentityUser = Volo.Abp.Identity.IdentityUser;
 
 namespace EasyAbp.Abp.PhoneNumberLogin.Account
 {
     public class PhoneNumberLoginAccountAppService : ApplicationService, IPhoneNumberLoginAccountAppService
     {
-
         private readonly IPhoneNumberLoginVerificationCodeSender _phoneNumberLoginVerificationCodeSender;
         private readonly IPhoneNumberLoginNewUserCreator _phoneNumberLoginNewUserCreator;
         private readonly IVerificationCodeManager _verificationCodeManager;
@@ -30,6 +28,7 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Account
         private readonly IHttpClientFactory _httpClientFactory;
         private readonly IConfiguration _configuration;
         private readonly ISettingProvider _settingProvider;
+
         public PhoneNumberLoginAccountAppService(
             IPhoneNumberLoginVerificationCodeSender phoneNumberLoginVerificationCodeSender,
             IPhoneNumberLoginNewUserCreator phoneNumberLoginNewUserCreator,
@@ -52,15 +51,9 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Account
             _configuration = configuration;
         }
 
-
         public virtual async Task<SendVerificationCodeResult> SendVerificationCodeAsync(SendVerificationCodeInput input)
         {
             var identityUser = await _uniquePhoneNumberIdentityUserRepository.FindByConfirmedPhoneNumberAsync(input.PhoneNumber);
-
-            if (identityUser != null && input.VerificationCodeType == VerificationCodeType.Register)
-            {
-                return new SendVerificationCodeResult(SendVerificationCodeResultType.SendsFailure);
-            }
 
             string code = await GenerateCodeAsync(input.PhoneNumber, input.VerificationCodeType, identityUser);
 
@@ -85,7 +78,6 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Account
 
         public virtual async Task<ConfirmPhoneNumberResult> ConfirmPhoneNumberAsync(ConfirmPhoneNumberInput input)
         {
-
             var identityUser = await _uniquePhoneNumberIdentityUserRepository.GetByConfirmedPhoneNumberAsync(input.PhoneNumber);
 
             var result = await _identityUserManager.VerifyUserTokenAsync(identityUser, TokenOptions.DefaultPhoneProvider, PhoneNumberLoginConsts.ConfirmPurposeName, input.VerificationCode);
@@ -100,7 +92,6 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Account
             (await _identityUserManager.UpdateAsync(identityUser)).CheckErrors();
 
             return new ConfirmPhoneNumberResult(ConfirmPhoneNumberResultType.Success);
-
         }
 
         public virtual async Task ResetPasswordAsync(ResetPasswordWithPhoneNumberInput input)
@@ -110,14 +101,18 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Account
             var identityUser = await _uniquePhoneNumberIdentityUserRepository.GetByConfirmedPhoneNumberAsync(input.PhoneNumber);
 
             (await _identityUserManager.ResetPasswordAsync(identityUser, input.VerificationCode, input.Password)).CheckErrors();
-
         }
 
         public virtual async Task<TryRegisterAndRequestTokenResult> TryRegisterAndRequestTokenAsync(LoginInput input)
         {
-            await _identityOptions.SetAsync();
+            var result = await GetValidateResultAsync(input.PhoneNumber, input.VerificationCode, VerificationCodeType.Register);
 
-            string code = input.VerificationCode;
+            if (!result)
+            {
+                throw new InvalidVerificationCodeException();
+            }
+
+            await _identityOptions.SetAsync();
 
             bool registerUser = false;
 
@@ -126,13 +121,6 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Account
 
             if (identityUser is null)
             {
-                var result = await GetValidateResultAsync(input.PhoneNumber, input.VerificationCode, VerificationCodeType.Register);
-
-                if (!result)
-                {
-                    throw new InvalidVerificationCodeException();
-                }
-
                 using (var uow = UnitOfWorkManager.Begin(new AbpUnitOfWorkOptions(true), true))
                 {
                     identityUser = await _phoneNumberLoginNewUserCreator.CreateAsync(input.PhoneNumber, input.UserName, input.Password, input.EmailAddress);
@@ -140,14 +128,13 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Account
                     await uow.CompleteAsync();
                 }
 
-                code = await GenerateCodeAsync(input.PhoneNumber, VerificationCodeType.Login, identityUser);
-
                 registerUser = true;
-
             }
 
+            string code = await GenerateCodeAsync(input.PhoneNumber, VerificationCodeType.Login, identityUser);
+
             return new TryRegisterAndRequestTokenResult(
-                registerUser ? TryRegisterAndRequestTokenResultType.Register : TryRegisterAndRequestTokenResultType.Login,
+                registerUser ? LoginResultType.Register : LoginResultType.Login,
                 (await RequestIds4LoginByCodeAsync(input.PhoneNumber, code))?.Raw,
                 CurrentTenant.Id);
         }
