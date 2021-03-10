@@ -8,17 +8,17 @@ using Volo.Abp.Validation;
 namespace EasyAbp.Abp.PhoneNumberLogin.Account.Dtos
 {
     [Serializable]
-    public class LoginResult : IMultiTenant
+    public class TryRegisterAndRequestTokenResult : IMultiTenant
     {
         public string Token { get;}
 
-        public LoginResultType Result { get; }
+        public TryRegisterAndRequestTokenResultType Result { get; }
 
         public string Description => Result.ToString();
 
         public Guid? TenantId { get; }
 
-        public LoginResult(LoginResultType result, string token, Guid? tenantId = null)
+        public TryRegisterAndRequestTokenResult(TryRegisterAndRequestTokenResultType result, string token, Guid? tenantId = null)
         {
             Result = result;
             Token = token;

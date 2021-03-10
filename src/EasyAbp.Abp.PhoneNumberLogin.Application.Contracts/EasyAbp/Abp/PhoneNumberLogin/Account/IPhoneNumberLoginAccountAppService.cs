@@ -21,6 +21,6 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Account
 
         Task<string> RefreshTokenAsync(RefreshTokenInput input);
 
-        Task<LoginResult> TryRegisterAndRequestTokenAsync(LoginInput input);
+        Task<TryRegisterAndRequestTokenResult> TryRegisterAndRequestTokenAsync(LoginInput input);
     }
 }

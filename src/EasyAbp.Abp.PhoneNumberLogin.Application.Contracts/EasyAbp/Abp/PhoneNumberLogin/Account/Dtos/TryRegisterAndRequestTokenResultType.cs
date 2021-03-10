@@ -4,7 +4,7 @@ using System.Text;
 
 namespace EasyAbp.Abp.PhoneNumberLogin.Account.Dtos
 {
-    public enum LoginResultType : byte
+    public enum TryRegisterAndRequestTokenResultType : byte
     {
         Login = 1,
 

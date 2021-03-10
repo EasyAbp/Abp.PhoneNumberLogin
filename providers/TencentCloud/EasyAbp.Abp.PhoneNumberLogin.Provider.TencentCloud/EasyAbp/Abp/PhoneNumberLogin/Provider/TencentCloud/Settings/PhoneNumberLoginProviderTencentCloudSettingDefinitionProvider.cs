@@ -41,8 +41,8 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Provider.TencentCloud.Settings
                 L("ResetPasswordTemplateId")));
 
             context.Add(new SettingDefinition(
-                PhoneNumberLoginProviderTencentCloudSettings.DefaultCountryCode ??
-                "86",
+                PhoneNumberLoginProviderTencentCloudSettings.DefaultCountryCode,
+                _phoneNumberLoginProviderTencentCloudOptions.DefaultCountryCode ?? "86",
                 displayName: L("DefaultCountryCode")));
         }
 

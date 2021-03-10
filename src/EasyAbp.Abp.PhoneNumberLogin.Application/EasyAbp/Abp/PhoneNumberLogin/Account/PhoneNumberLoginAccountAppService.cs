@@ -55,7 +55,7 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Account
 
         public virtual async Task<SendVerificationCodeResult> SendVerificationCodeAsync(SendVerificationCodeInput input)
         {
-            var identityUser = await _uniquePhoneNumberIdentityUserRepository.GetByConfirmedPhoneNumberAsync(input.PhoneNumber);
+            var identityUser = await _uniquePhoneNumberIdentityUserRepository.FindByConfirmedPhoneNumberAsync(input.PhoneNumber);
 
             if (identityUser != null && input.VerificationCodeType == VerificationCodeType.Register)
             {
@@ -113,7 +113,7 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Account
 
         }
 
-        public virtual async Task<LoginResult> TryRegisterAndRequestTokenAsync(LoginInput input)
+        public virtual async Task<TryRegisterAndRequestTokenResult> TryRegisterAndRequestTokenAsync(LoginInput input)
         {
             await _identityOptions.SetAsync();
 
@@ -146,8 +146,8 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Account
 
             }
 
-            return new LoginResult(
-                registerUser ? LoginResultType.Register : LoginResultType.Login,
+            return new TryRegisterAndRequestTokenResult(
+                registerUser ? TryRegisterAndRequestTokenResultType.Register : TryRegisterAndRequestTokenResultType.Login,
                 (await RequestIds4LoginByCodeAsync(input.PhoneNumber, code))?.Raw,
                 CurrentTenant.Id);
         }

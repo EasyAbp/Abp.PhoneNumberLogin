@@ -12,5 +12,6 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Provider.TencentCloud
         public string LoginTemplateId { get; set; }
         public string ResetPasswordTemplateId { get; set; }
         public string ConfirmTemplateId { get; set; }
+        public string DefaultCountryCode { get; set; }
     }
 }
