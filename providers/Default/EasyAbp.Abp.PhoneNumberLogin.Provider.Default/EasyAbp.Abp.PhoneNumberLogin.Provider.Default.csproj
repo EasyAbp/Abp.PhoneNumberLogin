@@ -1,0 +1,13 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="..\..\..\common.props" />
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace />
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.Sms" Version="$(AbpVersion)" />
+    <ProjectReference Include="..\..\..\src\EasyAbp.Abp.PhoneNumberLogin.Domain\EasyAbp.Abp.PhoneNumberLogin.Domain.csproj" />
+  </ItemGroup>
+
+</Project>

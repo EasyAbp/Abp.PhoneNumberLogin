@@ -1,10 +1,7 @@
-﻿using System.Collections.Generic;
-using Microsoft.AspNetCore.Identity;
-using Microsoft.Extensions.DependencyInjection;
-using Volo.Abp.Identity;
+﻿using EasyAbp.Abp.VerificationCode.Identity;
 using Volo.Abp.Modularity;
 
-namespace EasyAbp.Abp.VerificationCode.Identity
+namespace EasyAbp.Abp.PhoneNumberLogin.Identity
 {
     [DependsOn(
         typeof(AbpVerificationCodeIdentityModule)
@@ -13,7 +10,6 @@ namespace EasyAbp.Abp.VerificationCode.Identity
     {
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
-
         }
     }
 }
