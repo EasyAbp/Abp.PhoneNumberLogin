@@ -98,7 +98,7 @@ namespace EasyAbp.Abp.PhoneNumberLogin
 
             var claims = new List<Claim>
             {
-                // 记录 phonenumber
+                // record phonenumber
                 new Claim("phonenumber", phonenumber)
             };
 

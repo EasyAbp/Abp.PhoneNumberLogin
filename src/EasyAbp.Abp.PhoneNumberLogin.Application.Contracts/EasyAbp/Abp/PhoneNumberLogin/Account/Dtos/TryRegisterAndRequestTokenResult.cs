@@ -12,13 +12,13 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Account.Dtos
     {
         public string Token { get;}
 
-        public LoginResultType Result { get; }
+        public RegisterResult Result { get; }
 
         public string Description => Result.ToString();
 
         public Guid? TenantId { get; }
 
-        public TryRegisterAndRequestTokenResult(LoginResultType result, string token, Guid? tenantId = null)
+        public TryRegisterAndRequestTokenResult(RegisterResult result, string token, Guid? tenantId = null)
         {
             Result = result;
             Token = token;

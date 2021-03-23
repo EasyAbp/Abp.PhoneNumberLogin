@@ -32,7 +32,7 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Provider.Default
 
             Configure<AbpExceptionLocalizationOptions>(options =>
             {
-                options.MapCodeNamespace("EasyAbp.Abp.PhoneNumberLogin.Provider.TencentCloud", typeof(PhoneNumberLoginProviderDefaultResource));
+                options.MapCodeNamespace("EasyAbp.Abp.PhoneNumberLogin.Provider.Default", typeof(PhoneNumberLoginProviderDefaultResource));
             });
 
             context.Services.Replace(ServiceDescriptor.Singleton<IPhoneNumberLoginVerificationCodeSender, DefaultPhoneNumberLoginVerificationCodeSender>());

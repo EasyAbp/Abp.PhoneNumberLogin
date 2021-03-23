@@ -7,6 +7,9 @@
     "NonNumericPhoneNumber": "Non-numeric phone number is not allowed",
     "Permission:UserLookup": "User lookup",
     "RegisterCodeCacheSeconds": "Register Verification Code Cache Time In Seconds",
-    "EasyAbp.Abp.PhoneNumberLogin:InvalidVerificationCode": "Invalid Verification Code"
+    "EasyAbp.Abp.PhoneNumberLogin:InvalidVerificationCode": "Invalid Verification Code",
+    "EasyAbp.Abp.PhoneNumberLogin:InvalidPassword": "Invalid Password",
+    "EasyAbp.Abp.PhoneNumberLogin:InvalidPhoneNumber": "Invalid PhoneNumber",
+    "EasyAbp.Abp.PhoneNumberLogin:InvalidCredential": "Invalid Credential"
   }
 }

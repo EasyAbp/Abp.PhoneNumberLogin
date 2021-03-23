@@ -7,6 +7,9 @@
     "NonNumericPhoneNumber": "不可為非數字手機號",
     "Permission:UserLookup": "使用者查詢",
     "RegisterCodeCacheSeconds": "註冊驗證碼緩存時間（秒）",
-    "EasyAbp.Abp.PhoneNumberLogin:InvalidVerificationCode": "無效的驗證碼"
+    "EasyAbp.Abp.PhoneNumberLogin:InvalidVerificationCode": "無效的驗證碼",
+    "EasyAbp.Abp.PhoneNumberLogin:InvalidPassword": "無效的密碼",
+    "EasyAbp.Abp.PhoneNumberLogin:InvalidPhoneNumber": "無效的電話號碼",
+    "EasyAbp.Abp.PhoneNumberLogin:InvalidCredential": "無效的登錄憑據"
   }
 }

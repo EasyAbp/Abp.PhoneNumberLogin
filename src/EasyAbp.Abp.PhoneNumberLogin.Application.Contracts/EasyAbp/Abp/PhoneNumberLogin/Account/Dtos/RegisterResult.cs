@@ -4,10 +4,10 @@ using System.Text;
 
 namespace EasyAbp.Abp.PhoneNumberLogin.Account.Dtos
 {
-    public enum LoginResultType : byte
+    public enum RegisterResult : byte
     {
-        Login = 1,
+        UserAlreadyExists = 1,
 
-        Register = 2
+        RegistrationSuccess = 2
     }
 }

@@ -2,7 +2,7 @@
 {
     public static class PhoneNumberLoginProviderDefaultSettings
     {
-        private const string Prefix = "EasyAbp.Abp.PhoneNumberLogin.Provider.TencentCloud";
+        private const string Prefix = "EasyAbp.Abp.PhoneNumberLogin.Provider.Default";
         
     }
 }

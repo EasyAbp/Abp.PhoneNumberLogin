@@ -1,10 +1,5 @@
 ﻿{
   "culture": "zh-Hans",
   "texts": {
-    "LoginTemplateId": "登录模板ID",
-    "RegisterTemplateId": "注册模板ID",
-    "ConfirmTemplateId": "确认手机号码模板ID",
-    "ResetPasswordTemplateId": "重置密码模板ID",
-    "DefaultCountryCode": "默认国家代码"
   }
 }

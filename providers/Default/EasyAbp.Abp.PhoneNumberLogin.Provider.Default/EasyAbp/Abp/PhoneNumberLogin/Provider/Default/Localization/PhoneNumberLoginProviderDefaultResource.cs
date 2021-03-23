@@ -2,7 +2,7 @@
 
 namespace EasyAbp.Abp.PhoneNumberLogin.Provider.Default.Localization
 {
-    [LocalizationResourceName("AbpPhoneNumberLoginProviderTencentCloud")]
+    [LocalizationResourceName("AbpPhoneNumberLoginProviderDefault")]
     public class PhoneNumberLoginProviderDefaultResource
     {
         

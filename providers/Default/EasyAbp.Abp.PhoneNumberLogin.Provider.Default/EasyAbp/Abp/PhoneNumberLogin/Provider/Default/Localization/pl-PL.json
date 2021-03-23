@@ -1,10 +1,5 @@
 ﻿{
   "culture": "pl-PL",
   "texts": {
-    "LoginTemplateId": "Login Template ID",
-    "RegisterTemplateId": "Refister Template ID",
-    "ConfirmTemplateId": "Confirm Template ID",
-    "ResetPasswordTemplateId": "Reset Password Template ID",
-    "DefaultCountryCode": "Default Country Code"
   }
 }

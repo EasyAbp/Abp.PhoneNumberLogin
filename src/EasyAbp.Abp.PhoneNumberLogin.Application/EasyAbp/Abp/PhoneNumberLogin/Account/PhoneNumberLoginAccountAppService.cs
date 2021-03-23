@@ -78,14 +78,15 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Account
 
         public virtual async Task<ConfirmPhoneNumberResult> ConfirmPhoneNumberAsync(ConfirmPhoneNumberInput input)
         {
-            var identityUser = await _uniquePhoneNumberIdentityUserRepository.GetByConfirmedPhoneNumberAsync(input.PhoneNumber);
 
-            var result = await _identityUserManager.VerifyUserTokenAsync(identityUser, TokenOptions.DefaultPhoneProvider, PhoneNumberLoginConsts.ConfirmPurposeName, input.VerificationCode);
+            var result = await GetValidateResultAsync(input.PhoneNumber, input.VerificationCode, VerificationCodeType.Register);
 
             if (!result)
             {
                 return new ConfirmPhoneNumberResult(ConfirmPhoneNumberResultType.WrongVerificationCode);
             }
+
+            var identityUser = await _uniquePhoneNumberIdentityUserRepository.GetByConfirmedPhoneNumberAsync(input.PhoneNumber);
 
             identityUser.SetPhoneNumberConfirmed(true);
 
@@ -103,7 +104,7 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Account
             (await _identityUserManager.ResetPasswordAsync(identityUser, input.VerificationCode, input.Password)).CheckErrors();
         }
 
-        public virtual async Task<TryRegisterAndRequestTokenResult> TryRegisterAndRequestTokenAsync(LoginInput input)
+        public virtual async Task<TryRegisterAndRequestTokenResult> TryRegisterAndRequestTokenAsync(TryRegisterAndRequestTokenInput input)
         {
             var result = await GetValidateResultAsync(input.PhoneNumber, input.VerificationCode, VerificationCodeType.Register);
 
@@ -134,7 +135,7 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Account
             string code = await GenerateCodeAsync(input.PhoneNumber, VerificationCodeType.Login, identityUser);
 
             return new TryRegisterAndRequestTokenResult(
-                registerUser ? LoginResultType.Register : LoginResultType.Login,
+                registerUser ? RegisterResult.RegistrationSuccess : RegisterResult.UserAlreadyExists,
                 (await RequestIds4LoginByCodeAsync(input.PhoneNumber, code))?.Raw,
                 CurrentTenant.Id);
         }
@@ -156,10 +157,37 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Account
 
         protected virtual async Task<bool> GetValidateResultAsync(string phoneNumber, string code, VerificationCodeType type)
         {
-            return await _verificationCodeManager.ValidateAsync(
-                codeCacheKey: $"{PhoneNumberLoginConsts.VerificationCodeCachePrefix}:{type}:{phoneNumber}",
-                verificationCode: code,
-                configuration: new VerificationCodeConfiguration());
+
+            switch (type)
+            {
+                case VerificationCodeType.ResetPassword:
+
+                    // Not able to validate reset password token here using default asp.net identity implementation
+
+                    return true;
+
+                case VerificationCodeType.Register:
+
+                    return await _verificationCodeManager.ValidateAsync(
+                        codeCacheKey: $"{PhoneNumberLoginConsts.VerificationCodeCachePrefix}:{type}:{phoneNumber}",
+                        verificationCode: code,
+                        configuration: new VerificationCodeConfiguration());
+
+                case VerificationCodeType.Login:
+
+                    var loginUser = await _uniquePhoneNumberIdentityUserRepository.GetByConfirmedPhoneNumberAsync(phoneNumber);
+
+                    return await _identityUserManager.VerifyUserTokenAsync(loginUser, TokenOptions.DefaultPhoneProvider, PhoneNumberLoginConsts.LoginPurposeName, code);
+
+                case VerificationCodeType.Confirm:
+
+                    var confirmPhoneUser = await _uniquePhoneNumberIdentityUserRepository.GetByConfirmedPhoneNumberAsync(phoneNumber);
+
+                    return await _identityUserManager.VerifyUserTokenAsync(confirmPhoneUser, TokenOptions.DefaultPhoneProvider, PhoneNumberLoginConsts.ConfirmPurposeName, code);
+            }
+
+            return false;
+
         }
 
         protected virtual async Task<TokenResponse> RequestIds4LoginByCodeAsync(string phoneNumber, string code)
