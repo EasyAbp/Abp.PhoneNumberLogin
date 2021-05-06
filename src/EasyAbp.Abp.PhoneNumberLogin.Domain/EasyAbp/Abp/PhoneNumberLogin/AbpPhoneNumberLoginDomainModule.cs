@@ -18,8 +18,17 @@ namespace EasyAbp.Abp.PhoneNumberLogin
     )]
     public class AbpPhoneNumberLoginDomainModule : AbpModule
     {
+        public override void PreConfigureServices(ServiceConfigurationContext context)
+        {
+            context.Services.PreConfigure<IIdentityServerBuilder>(builder =>
+            {
+                builder.AddExtensionGrantValidator<PhoneNumberGrantValidator>();
+            });
+        }
+
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
+            context.Services.TryAddTransient<IPhoneNumberLoginNewUserCreator, DefaultPhoneLoginNewUserCreator>();
             context.Services.TryAddTransient<UniquePhoneNumberUserValidator>();
             context.Services.AddTransient<IUserValidator<IdentityUser>, UniquePhoneNumberUserValidator>();
         }

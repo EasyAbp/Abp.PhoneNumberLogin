@@ -5,6 +5,11 @@
     "DuplicatePhoneNumber": "手机号已经被使用了",
     "PhoneNumberStartsWithZero": "手机号不能以 0 开头",
     "NonNumericPhoneNumber": "不可为非数字手机号",
-    "Permission:UserLookup": "用户查询"
+    "Permission:UserLookup": "用户查询",
+    "RegisterCodeCacheSeconds": "注册验证码缓存时间（秒）",
+    "EasyAbp.Abp.PhoneNumberLogin:InvalidVerificationCode": "无效的验证码",
+    "EasyAbp.Abp.PhoneNumberLogin:InvalidPassword": "无效的密码",
+    "EasyAbp.Abp.PhoneNumberLogin:InvalidPhoneNumber": "无效的手机号",
+    "EasyAbp.Abp.PhoneNumberLogin:InvalidCredential": "无效的登录凭据"
   }
 }

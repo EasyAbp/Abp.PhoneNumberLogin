@@ -8,5 +8,10 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Account.Dtos
         public SendVerificationCodeResultType Result { get; }
 
         public string Description => Result.ToString();
+
+        public SendVerificationCodeResult(SendVerificationCodeResultType result)
+        {
+            Result = result;
+        }
     }
 }

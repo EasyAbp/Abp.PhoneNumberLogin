@@ -1,0 +1,1 @@
+﻿您的驗證碼：{{code}}（{{model.lifespan_minutes}}分鐘內有效），切勿將本驗證碼告知他人。

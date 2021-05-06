@@ -49,37 +49,49 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{40CBC713-CD9
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "test", "test", "{61F4FF6D-0110-4663-AFA3-EC59C8371423}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneNumberLoginSample.Domain.Shared", "samples\PhoneNumberLoginSample\src\PhoneNumberLoginSample.Domain.Shared\PhoneNumberLoginSample.Domain.Shared.csproj", "{052B6551-F8B9-4419-A9B7-89A7AC138E07}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhoneNumberLoginSample.Domain.Shared", "samples\PhoneNumberLoginSample\src\PhoneNumberLoginSample.Domain.Shared\PhoneNumberLoginSample.Domain.Shared.csproj", "{052B6551-F8B9-4419-A9B7-89A7AC138E07}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneNumberLoginSample.Domain", "samples\PhoneNumberLoginSample\src\PhoneNumberLoginSample.Domain\PhoneNumberLoginSample.Domain.csproj", "{71A9BCAD-8527-475E-9253-94F521C42C7D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhoneNumberLoginSample.Domain", "samples\PhoneNumberLoginSample\src\PhoneNumberLoginSample.Domain\PhoneNumberLoginSample.Domain.csproj", "{71A9BCAD-8527-475E-9253-94F521C42C7D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneNumberLoginSample.Application.Contracts", "samples\PhoneNumberLoginSample\src\PhoneNumberLoginSample.Application.Contracts\PhoneNumberLoginSample.Application.Contracts.csproj", "{57635972-9CE6-4256-8FB8-360D01DC9FCE}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhoneNumberLoginSample.Application.Contracts", "samples\PhoneNumberLoginSample\src\PhoneNumberLoginSample.Application.Contracts\PhoneNumberLoginSample.Application.Contracts.csproj", "{57635972-9CE6-4256-8FB8-360D01DC9FCE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneNumberLoginSample.Application", "samples\PhoneNumberLoginSample\src\PhoneNumberLoginSample.Application\PhoneNumberLoginSample.Application.csproj", "{B317CBAF-D1F0-4052-B74D-F6BB2A37906D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhoneNumberLoginSample.Application", "samples\PhoneNumberLoginSample\src\PhoneNumberLoginSample.Application\PhoneNumberLoginSample.Application.csproj", "{B317CBAF-D1F0-4052-B74D-F6BB2A37906D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneNumberLoginSample.EntityFrameworkCore", "samples\PhoneNumberLoginSample\src\PhoneNumberLoginSample.EntityFrameworkCore\PhoneNumberLoginSample.EntityFrameworkCore.csproj", "{2B5962EB-6272-460B-A270-25E494F7C166}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhoneNumberLoginSample.EntityFrameworkCore", "samples\PhoneNumberLoginSample\src\PhoneNumberLoginSample.EntityFrameworkCore\PhoneNumberLoginSample.EntityFrameworkCore.csproj", "{2B5962EB-6272-460B-A270-25E494F7C166}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneNumberLoginSample.EntityFrameworkCore.DbMigrations", "samples\PhoneNumberLoginSample\src\PhoneNumberLoginSample.EntityFrameworkCore.DbMigrations\PhoneNumberLoginSample.EntityFrameworkCore.DbMigrations.csproj", "{3A6FB889-FDD6-49E0-A673-EFA4F5C541C5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhoneNumberLoginSample.EntityFrameworkCore.DbMigrations", "samples\PhoneNumberLoginSample\src\PhoneNumberLoginSample.EntityFrameworkCore.DbMigrations\PhoneNumberLoginSample.EntityFrameworkCore.DbMigrations.csproj", "{3A6FB889-FDD6-49E0-A673-EFA4F5C541C5}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneNumberLoginSample.DbMigrator", "samples\PhoneNumberLoginSample\src\PhoneNumberLoginSample.DbMigrator\PhoneNumberLoginSample.DbMigrator.csproj", "{A73E15B1-1FBB-4C36-9A69-C5F9DB95A5EC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhoneNumberLoginSample.DbMigrator", "samples\PhoneNumberLoginSample\src\PhoneNumberLoginSample.DbMigrator\PhoneNumberLoginSample.DbMigrator.csproj", "{A73E15B1-1FBB-4C36-9A69-C5F9DB95A5EC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneNumberLoginSample.HttpApi", "samples\PhoneNumberLoginSample\src\PhoneNumberLoginSample.HttpApi\PhoneNumberLoginSample.HttpApi.csproj", "{22050D0D-8323-451C-9B98-91EC5DDB759F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhoneNumberLoginSample.HttpApi", "samples\PhoneNumberLoginSample\src\PhoneNumberLoginSample.HttpApi\PhoneNumberLoginSample.HttpApi.csproj", "{22050D0D-8323-451C-9B98-91EC5DDB759F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneNumberLoginSample.HttpApi.Client", "samples\PhoneNumberLoginSample\src\PhoneNumberLoginSample.HttpApi.Client\PhoneNumberLoginSample.HttpApi.Client.csproj", "{A94A9570-C383-4CC4-A8F5-3E95DB4F2F2A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhoneNumberLoginSample.HttpApi.Client", "samples\PhoneNumberLoginSample\src\PhoneNumberLoginSample.HttpApi.Client\PhoneNumberLoginSample.HttpApi.Client.csproj", "{A94A9570-C383-4CC4-A8F5-3E95DB4F2F2A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneNumberLoginSample.Web", "samples\PhoneNumberLoginSample\src\PhoneNumberLoginSample.Web\PhoneNumberLoginSample.Web.csproj", "{7E72B554-D477-420A-A03B-55E271E0CC42}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhoneNumberLoginSample.Web", "samples\PhoneNumberLoginSample\src\PhoneNumberLoginSample.Web\PhoneNumberLoginSample.Web.csproj", "{7E72B554-D477-420A-A03B-55E271E0CC42}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneNumberLoginSample.TestBase", "samples\PhoneNumberLoginSample\test\PhoneNumberLoginSample.TestBase\PhoneNumberLoginSample.TestBase.csproj", "{291FBAB4-8A19-47EE-ADCD-6963AFE667D8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhoneNumberLoginSample.TestBase", "samples\PhoneNumberLoginSample\test\PhoneNumberLoginSample.TestBase\PhoneNumberLoginSample.TestBase.csproj", "{291FBAB4-8A19-47EE-ADCD-6963AFE667D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneNumberLoginSample.Domain.Tests", "samples\PhoneNumberLoginSample\test\PhoneNumberLoginSample.Domain.Tests\PhoneNumberLoginSample.Domain.Tests.csproj", "{2B8C099A-F11F-49C2-BEB7-C43574C672DF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhoneNumberLoginSample.Domain.Tests", "samples\PhoneNumberLoginSample\test\PhoneNumberLoginSample.Domain.Tests\PhoneNumberLoginSample.Domain.Tests.csproj", "{2B8C099A-F11F-49C2-BEB7-C43574C672DF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneNumberLoginSample.EntityFrameworkCore.Tests", "samples\PhoneNumberLoginSample\test\PhoneNumberLoginSample.EntityFrameworkCore.Tests\PhoneNumberLoginSample.EntityFrameworkCore.Tests.csproj", "{7BC68089-9B21-4B83-96A4-2B8E660ED74C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhoneNumberLoginSample.EntityFrameworkCore.Tests", "samples\PhoneNumberLoginSample\test\PhoneNumberLoginSample.EntityFrameworkCore.Tests\PhoneNumberLoginSample.EntityFrameworkCore.Tests.csproj", "{7BC68089-9B21-4B83-96A4-2B8E660ED74C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneNumberLoginSample.Application.Tests", "samples\PhoneNumberLoginSample\test\PhoneNumberLoginSample.Application.Tests\PhoneNumberLoginSample.Application.Tests.csproj", "{5C8320BE-3F3C-498D-AB54-BD3D94620477}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhoneNumberLoginSample.Application.Tests", "samples\PhoneNumberLoginSample\test\PhoneNumberLoginSample.Application.Tests\PhoneNumberLoginSample.Application.Tests.csproj", "{5C8320BE-3F3C-498D-AB54-BD3D94620477}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneNumberLoginSample.HttpApi.Client.ConsoleTestApp", "samples\PhoneNumberLoginSample\test\PhoneNumberLoginSample.HttpApi.Client.ConsoleTestApp\PhoneNumberLoginSample.HttpApi.Client.ConsoleTestApp.csproj", "{D9BDAEAD-14E5-45CB-8844-A1D73A4CEAF4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhoneNumberLoginSample.HttpApi.Client.ConsoleTestApp", "samples\PhoneNumberLoginSample\test\PhoneNumberLoginSample.HttpApi.Client.ConsoleTestApp\PhoneNumberLoginSample.HttpApi.Client.ConsoleTestApp.csproj", "{D9BDAEAD-14E5-45CB-8844-A1D73A4CEAF4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PhoneNumberLoginSample.Web.Tests", "samples\PhoneNumberLoginSample\test\PhoneNumberLoginSample.Web.Tests\PhoneNumberLoginSample.Web.Tests.csproj", "{5B07B882-479D-423E-A3C8-81065B23E256}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PhoneNumberLoginSample.Web.Tests", "samples\PhoneNumberLoginSample\test\PhoneNumberLoginSample.Web.Tests\PhoneNumberLoginSample.Web.Tests.csproj", "{5B07B882-479D-423E-A3C8-81065B23E256}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "providers", "providers", "{A2C21CA8-74A4-4758-AF59-6A9340939885}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TencentCloud", "TencentCloud", "{14A8B94D-986C-4976-8309-FB928DF9B68C}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.Abp.PhoneNumberLogin.Provider.TencentCloud", "providers\TencentCloud\EasyAbp.Abp.PhoneNumberLogin.Provider.TencentCloud\EasyAbp.Abp.PhoneNumberLogin.Provider.TencentCloud.csproj", "{E65D76F0-64FE-455B-8272-E8A36B90ECEA}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Default", "Default", "{56AD1B9F-098D-49C2-B92D-D106A827D355}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.Abp.PhoneNumberLogin.Provider.Default", "providers\Default\EasyAbp.Abp.PhoneNumberLogin.Provider.Default\EasyAbp.Abp.PhoneNumberLogin.Provider.Default.csproj", "{4CC4B43B-522D-43E3-B97E-20DA4E000536}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.Abp.PhoneNumberLogin.Provider.Default.Tests", "providers\Default\EasyAbp.Abp.PhoneNumberLogin.Provider.Default.Tests\EasyAbp.Abp.PhoneNumberLogin.Provider.Default.Tests.csproj", "{B183D572-C5B7-4F95-91C1-4F1283F45F2D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -215,6 +227,18 @@ Global
 		{5B07B882-479D-423E-A3C8-81065B23E256}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{5B07B882-479D-423E-A3C8-81065B23E256}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{5B07B882-479D-423E-A3C8-81065B23E256}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E65D76F0-64FE-455B-8272-E8A36B90ECEA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E65D76F0-64FE-455B-8272-E8A36B90ECEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E65D76F0-64FE-455B-8272-E8A36B90ECEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E65D76F0-64FE-455B-8272-E8A36B90ECEA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4CC4B43B-522D-43E3-B97E-20DA4E000536}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4CC4B43B-522D-43E3-B97E-20DA4E000536}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4CC4B43B-522D-43E3-B97E-20DA4E000536}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4CC4B43B-522D-43E3-B97E-20DA4E000536}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B183D572-C5B7-4F95-91C1-4F1283F45F2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B183D572-C5B7-4F95-91C1-4F1283F45F2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B183D572-C5B7-4F95-91C1-4F1283F45F2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B183D572-C5B7-4F95-91C1-4F1283F45F2D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -255,6 +279,11 @@ Global
 		{5C8320BE-3F3C-498D-AB54-BD3D94620477} = {61F4FF6D-0110-4663-AFA3-EC59C8371423}
 		{D9BDAEAD-14E5-45CB-8844-A1D73A4CEAF4} = {61F4FF6D-0110-4663-AFA3-EC59C8371423}
 		{5B07B882-479D-423E-A3C8-81065B23E256} = {61F4FF6D-0110-4663-AFA3-EC59C8371423}
+		{14A8B94D-986C-4976-8309-FB928DF9B68C} = {A2C21CA8-74A4-4758-AF59-6A9340939885}
+		{E65D76F0-64FE-455B-8272-E8A36B90ECEA} = {14A8B94D-986C-4976-8309-FB928DF9B68C}
+		{56AD1B9F-098D-49C2-B92D-D106A827D355} = {A2C21CA8-74A4-4758-AF59-6A9340939885}
+		{4CC4B43B-522D-43E3-B97E-20DA4E000536} = {56AD1B9F-098D-49C2-B92D-D106A827D355}
+		{B183D572-C5B7-4F95-91C1-4F1283F45F2D} = {56AD1B9F-098D-49C2-B92D-D106A827D355}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {87C59659-413F-15FE-523C-B959A893D695}

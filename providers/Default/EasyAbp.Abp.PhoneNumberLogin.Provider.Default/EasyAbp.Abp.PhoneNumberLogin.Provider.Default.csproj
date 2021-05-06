@@ -1,0 +1,19 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <Import Project="..\..\..\common.props" />
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <RootNamespace />
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Volo.Abp.Sms" Version="$(AbpVersion)" />
+    <PackageReference Include="Volo.Abp.TextTemplating" Version="$(AbpVersion)" />
+    <ProjectReference Include="..\..\..\src\EasyAbp.Abp.PhoneNumberLogin.Application\EasyAbp.Abp.PhoneNumberLogin.Application.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="EasyAbp\Abp\PhoneNumberLogin\Provider\Default\Templates\**\*.tpl" />
+    <EmbeddedResource Include="EasyAbp\Abp\PhoneNumberLogin\Provider\Default\Templates\**\*.tpl" />
+  </ItemGroup>
+
+</Project>

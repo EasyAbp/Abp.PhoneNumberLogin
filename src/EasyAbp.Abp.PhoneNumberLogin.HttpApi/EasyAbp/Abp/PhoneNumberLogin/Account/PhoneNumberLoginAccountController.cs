@@ -66,5 +66,12 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Account
         {
             return _service.RefreshTokenAsync(input);
         }
+
+        [HttpPost]
+        [Route("register-request-token")]
+        public Task<TryRegisterAndRequestTokenResult> TryRegisterAndRequestTokenAsync(TryRegisterAndRequestTokenInput input)
+        {
+            return _service.TryRegisterAndRequestTokenAsync(input);
+        }
     }
 }

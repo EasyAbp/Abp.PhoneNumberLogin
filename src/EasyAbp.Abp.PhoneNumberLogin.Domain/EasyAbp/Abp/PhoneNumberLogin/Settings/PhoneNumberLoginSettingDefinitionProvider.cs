@@ -1,4 +1,6 @@
-﻿using Volo.Abp.Settings;
+﻿using EasyAbp.Abp.PhoneNumberLogin.Localization;
+using Volo.Abp.Localization;
+using Volo.Abp.Settings;
 
 namespace EasyAbp.Abp.PhoneNumberLogin.Settings
 {
@@ -6,9 +8,15 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Settings
     {
         public override void Define(ISettingDefinitionContext context)
         {
-            /* Define module settings here.
-             * Use names from PhoneNumberLoginSettings class.
-             */
+            context.Add(new SettingDefinition(
+                PhoneNumberLoginSettings.RegisterCodeCacheSeconds,
+                "300",
+                L("RegisterCodeCacheSeconds")));
+        }
+
+        private static LocalizableString L(string name)
+        {
+            return LocalizableString.Create<PhoneNumberLoginResource>(name);
         }
     }
 }

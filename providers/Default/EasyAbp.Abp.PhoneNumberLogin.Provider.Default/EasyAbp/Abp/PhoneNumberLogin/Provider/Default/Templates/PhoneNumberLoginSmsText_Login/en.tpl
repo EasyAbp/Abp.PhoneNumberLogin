@@ -1,0 +1,1 @@
+﻿Your dynamic code is {{code}}. It is valid for {{model.lifespan_minutes}} minutes. Do not provide it to anyone.
