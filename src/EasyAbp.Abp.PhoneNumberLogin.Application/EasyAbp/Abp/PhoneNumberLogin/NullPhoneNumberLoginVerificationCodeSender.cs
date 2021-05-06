@@ -9,7 +9,7 @@ namespace EasyAbp.Abp.PhoneNumberLogin
 {
     public class NullPhoneNumberLoginVerificationCodeSender : IPhoneNumberLoginVerificationCodeSender, ITransientDependency
     {
-        public Task<bool> SendAsync(string phoneNumber, string code, VerificationCodeType type, string message = null)
+        public Task<bool> SendAsync(string phoneNumber, string code, VerificationCodeType type, object textTemplateModel = null)
         {
             return Task.FromResult(false);
         }

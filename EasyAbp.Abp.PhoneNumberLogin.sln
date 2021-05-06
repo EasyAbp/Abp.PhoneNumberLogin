@@ -87,11 +87,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TencentCloud", "TencentClou
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "EasyAbp.Abp.PhoneNumberLogin.Provider.TencentCloud", "providers\TencentCloud\EasyAbp.Abp.PhoneNumberLogin.Provider.TencentCloud\EasyAbp.Abp.PhoneNumberLogin.Provider.TencentCloud.csproj", "{E65D76F0-64FE-455B-8272-E8A36B90ECEA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.Abp.PhoneNumberLogin.Identity", "src\EasyAbp.Abp.PhoneNumberLogin.Identity\EasyAbp.Abp.PhoneNumberLogin.Identity.csproj", "{421504B7-9E63-4C47-99A5-58FF5464DC1C}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Default", "Default", "{56AD1B9F-098D-49C2-B92D-D106A827D355}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.Abp.PhoneNumberLogin.Provider.Default", "providers\Default\EasyAbp.Abp.PhoneNumberLogin.Provider.Default\EasyAbp.Abp.PhoneNumberLogin.Provider.Default.csproj", "{4CC4B43B-522D-43E3-B97E-20DA4E000536}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EasyAbp.Abp.PhoneNumberLogin.Provider.Default.Tests", "providers\Default\EasyAbp.Abp.PhoneNumberLogin.Provider.Default.Tests\EasyAbp.Abp.PhoneNumberLogin.Provider.Default.Tests.csproj", "{B183D572-C5B7-4F95-91C1-4F1283F45F2D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -231,14 +231,14 @@ Global
 		{E65D76F0-64FE-455B-8272-E8A36B90ECEA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E65D76F0-64FE-455B-8272-E8A36B90ECEA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E65D76F0-64FE-455B-8272-E8A36B90ECEA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{421504B7-9E63-4C47-99A5-58FF5464DC1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{421504B7-9E63-4C47-99A5-58FF5464DC1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{421504B7-9E63-4C47-99A5-58FF5464DC1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{421504B7-9E63-4C47-99A5-58FF5464DC1C}.Release|Any CPU.Build.0 = Release|Any CPU
 		{4CC4B43B-522D-43E3-B97E-20DA4E000536}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4CC4B43B-522D-43E3-B97E-20DA4E000536}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4CC4B43B-522D-43E3-B97E-20DA4E000536}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4CC4B43B-522D-43E3-B97E-20DA4E000536}.Release|Any CPU.Build.0 = Release|Any CPU
+		{B183D572-C5B7-4F95-91C1-4F1283F45F2D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{B183D572-C5B7-4F95-91C1-4F1283F45F2D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{B183D572-C5B7-4F95-91C1-4F1283F45F2D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{B183D572-C5B7-4F95-91C1-4F1283F45F2D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -281,9 +281,9 @@ Global
 		{5B07B882-479D-423E-A3C8-81065B23E256} = {61F4FF6D-0110-4663-AFA3-EC59C8371423}
 		{14A8B94D-986C-4976-8309-FB928DF9B68C} = {A2C21CA8-74A4-4758-AF59-6A9340939885}
 		{E65D76F0-64FE-455B-8272-E8A36B90ECEA} = {14A8B94D-986C-4976-8309-FB928DF9B68C}
-		{421504B7-9E63-4C47-99A5-58FF5464DC1C} = {649A3FFA-182F-4E56-9717-E6A9A2BEC545}
 		{56AD1B9F-098D-49C2-B92D-D106A827D355} = {A2C21CA8-74A4-4758-AF59-6A9340939885}
 		{4CC4B43B-522D-43E3-B97E-20DA4E000536} = {56AD1B9F-098D-49C2-B92D-D106A827D355}
+		{B183D572-C5B7-4F95-91C1-4F1283F45F2D} = {56AD1B9F-098D-49C2-B92D-D106A827D355}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {87C59659-413F-15FE-523C-B959A893D695}

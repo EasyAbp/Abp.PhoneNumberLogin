@@ -1,4 +1,4 @@
-﻿namespace EasyAbp.Abp.PhoneNumberLogin.Provider.TencentCloud.Settings
+﻿namespace EasyAbp.Abp.PhoneNumberLogin.Provider.Default.Settings
 {
     public static class PhoneNumberLoginProviderDefaultSettings
     {

@@ -8,6 +8,6 @@ namespace EasyAbp.Abp.PhoneNumberLogin
 {
     public interface IPhoneNumberLoginVerificationCodeSender
     {
-        Task<bool> SendAsync(string phoneNumber, string code, VerificationCodeType type, string message = null);
+        Task<bool> SendAsync(string phoneNumber, string code, VerificationCodeType type, object textTemplateModel = null);
     }
 }

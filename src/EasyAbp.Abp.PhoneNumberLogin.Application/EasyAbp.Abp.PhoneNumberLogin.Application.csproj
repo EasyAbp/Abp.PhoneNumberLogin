@@ -10,6 +10,7 @@
   <ItemGroup>
     <PackageReference Include="Volo.Abp.AutoMapper" Version="$(AbpVersion)" />
     <PackageReference Include="Volo.Abp.Ddd.Application" Version="$(AbpVersion)" />
+    <PackageReference Include="EasyAbp.Abp.VerificationCode" Version="$(AbpVerificationCodeModuleVersion)" />
     <ProjectReference Include="..\EasyAbp.Abp.PhoneNumberLogin.Application.Contracts\EasyAbp.Abp.PhoneNumberLogin.Application.Contracts.csproj" />
     <ProjectReference Include="..\EasyAbp.Abp.PhoneNumberLogin.Domain\EasyAbp.Abp.PhoneNumberLogin.Domain.csproj" />
   </ItemGroup>

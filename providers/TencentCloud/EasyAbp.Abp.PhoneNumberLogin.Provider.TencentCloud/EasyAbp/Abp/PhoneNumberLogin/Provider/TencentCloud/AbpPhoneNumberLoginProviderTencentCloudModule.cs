@@ -11,7 +11,7 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Provider.TencentCloud
 {
 
     [DependsOn(
-        typeof(AbpPhoneNumberLoginDomainModule),
+        typeof(AbpPhoneNumberLoginApplicationModule),
         typeof(AbpSmsTencentCloudModule)
     )]
     public class AbpPhoneNumberLoginProviderTencentCloudModule : AbpModule

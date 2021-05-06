@@ -57,7 +57,9 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Account
 
             string code = await GenerateCodeAsync(input.PhoneNumber, input.VerificationCodeType, identityUser);
 
-            var result = await _phoneNumberLoginVerificationCodeSender.SendAsync(input.PhoneNumber, code, input.VerificationCodeType);
+            var result = await _phoneNumberLoginVerificationCodeSender.SendAsync(input.PhoneNumber, code,
+                input.VerificationCodeType,
+                new {LifespanMinutes = Math.Floor(await GetRegisterCodeCacheSecondsAsync() / 60f)});
 
             return result ? new SendVerificationCodeResult(SendVerificationCodeResultType.Success) : new SendVerificationCodeResult(SendVerificationCodeResultType.SendsFailure);
         }
@@ -262,9 +264,9 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Account
             return "__tenant";
         }
 
-        protected virtual async Task<int> GetCacheTime()
+        protected virtual async Task<int> GetRegisterCodeCacheSecondsAsync()
         {
-            return await _settingProvider.GetAsync(PhoneNumberLoginSettings.RegisterCodeCacheSeconds, 5);
+            return await _settingProvider.GetAsync<int>(PhoneNumberLoginSettings.RegisterCodeCacheSeconds);
         }
 
         protected virtual async Task<string> GenerateCodeAsync(string phoneNumber, VerificationCodeType type, IdentityUser identityUser = null)
@@ -281,7 +283,7 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Account
 
                     code = await _verificationCodeManager.GenerateAsync(
                         codeCacheKey: $"{PhoneNumberLoginConsts.VerificationCodeCachePrefix}:{type}:{phoneNumber}",
-                        codeCacheLifespan: TimeSpan.FromMinutes(await GetCacheTime()),
+                        codeCacheLifespan: TimeSpan.FromSeconds(await GetRegisterCodeCacheSecondsAsync()),
                         configuration: new VerificationCodeConfiguration());
                     break;
 

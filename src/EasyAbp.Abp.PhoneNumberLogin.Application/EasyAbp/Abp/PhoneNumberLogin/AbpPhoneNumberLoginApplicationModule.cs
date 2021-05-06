@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using EasyAbp.Abp.VerificationCode;
+using Microsoft.Extensions.DependencyInjection;
 using Volo.Abp.AutoMapper;
 using Volo.Abp.Modularity;
 using Volo.Abp.Application;
@@ -9,7 +10,8 @@ namespace EasyAbp.Abp.PhoneNumberLogin
         typeof(AbpPhoneNumberLoginDomainModule),
         typeof(AbpPhoneNumberLoginApplicationContractsModule),
         typeof(AbpDddApplicationModule),
-        typeof(AbpAutoMapperModule)
+        typeof(AbpAutoMapperModule),
+        typeof(AbpVerificationCodeModule)
         )]
     public class AbpPhoneNumberLoginApplicationModule : AbpModule
     {

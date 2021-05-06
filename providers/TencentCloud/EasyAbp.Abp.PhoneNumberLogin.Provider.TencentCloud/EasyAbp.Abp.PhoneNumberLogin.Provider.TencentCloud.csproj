@@ -9,6 +9,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\..\src\EasyAbp.Abp.PhoneNumberLogin.Domain\EasyAbp.Abp.PhoneNumberLogin.Domain.csproj" />
+    <ProjectReference Include="..\..\..\src\EasyAbp.Abp.PhoneNumberLogin.Application\EasyAbp.Abp.PhoneNumberLogin.Application.csproj" />
   </ItemGroup>
 </Project>

@@ -1,5 +1,4 @@
 ﻿using EasyAbp.Abp.PhoneNumberLogin.Identity;
-using EasyAbp.Abp.VerificationCode;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.DependencyInjection.Extensions;
@@ -13,7 +12,6 @@ namespace EasyAbp.Abp.PhoneNumberLogin
 {
     [DependsOn(
         typeof(AbpDddDomainModule),
-        typeof(AbpVerificationCodeModule),
         typeof(AbpIdentityDomainModule),
         typeof(AbpIdentityServerDomainModule),
         typeof(AbpPhoneNumberLoginDomainSharedModule)

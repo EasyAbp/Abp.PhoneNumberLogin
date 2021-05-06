@@ -19,7 +19,7 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Provider.TencentCloud
             _settingProvider = settingProvider;
         }
 
-        public virtual async Task<bool> SendAsync(string phoneNumber, string code, VerificationCodeType type, string message = null)
+        public virtual async Task<bool> SendAsync(string phoneNumber, string code, VerificationCodeType type, object textTemplateModel = null)
         {
             string templateId = string.Empty;
 
@@ -41,7 +41,7 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Provider.TencentCloud
 
             phoneNumber = await FormatPhoneNumberAsync(phoneNumber);
 
-            SmsMessage smsMessage = new SmsMessage(phoneNumber, string.IsNullOrEmpty(message) ? PhoneNumberLoginProviderTencentCloudConsts.PlaceHolder : message);
+            var smsMessage = new SmsMessage(phoneNumber, PhoneNumberLoginProviderTencentCloudConsts.PlaceHolder);
 
             smsMessage.Properties.Add(AbpSmsTencentCloudConsts.TemplateIdPropertyName, templateId);
 

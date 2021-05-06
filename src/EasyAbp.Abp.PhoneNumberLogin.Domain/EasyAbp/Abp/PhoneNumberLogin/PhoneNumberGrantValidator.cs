@@ -1,6 +1,5 @@
 ﻿using EasyAbp.Abp.PhoneNumberLogin.Identity;
 using EasyAbp.Abp.PhoneNumberLogin.Localization;
-using EasyAbp.Abp.VerificationCode;
 using IdentityServer4.Models;
 using IdentityServer4.Validation;
 using Microsoft.AspNetCore.Identity;
