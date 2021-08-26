@@ -7,18 +7,18 @@ namespace PhoneNumberLoginSample.EntityFrameworkCore
 {
     /* This class is needed for EF Core console commands
      * (like Add-Migration and Update-Database commands) */
-    public class PhoneNumberLoginSampleMigrationsDbContextFactory : IDesignTimeDbContextFactory<PhoneNumberLoginSampleMigrationsDbContext>
+    public class PhoneNumberLoginSampleDbContextFactory : IDesignTimeDbContextFactory<PhoneNumberLoginSampleDbContext>
     {
-        public PhoneNumberLoginSampleMigrationsDbContext CreateDbContext(string[] args)
+        public PhoneNumberLoginSampleDbContext CreateDbContext(string[] args)
         {
             PhoneNumberLoginSampleEfCoreEntityExtensionMappings.Configure();
 
             var configuration = BuildConfiguration();
 
-            var builder = new DbContextOptionsBuilder<PhoneNumberLoginSampleMigrationsDbContext>()
+            var builder = new DbContextOptionsBuilder<PhoneNumberLoginSampleDbContext>()
                 .UseSqlServer(configuration.GetConnectionString("Default"));
 
-            return new PhoneNumberLoginSampleMigrationsDbContext(builder.Options);
+            return new PhoneNumberLoginSampleDbContext(builder.Options);
         }
 
         private static IConfigurationRoot BuildConfiguration()

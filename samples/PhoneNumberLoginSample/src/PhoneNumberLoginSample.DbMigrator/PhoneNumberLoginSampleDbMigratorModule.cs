@@ -7,7 +7,7 @@ namespace PhoneNumberLoginSample.DbMigrator
 {
     [DependsOn(
         typeof(AbpAutofacModule),
-        typeof(PhoneNumberLoginSampleEntityFrameworkCoreDbMigrationsModule),
+        typeof(PhoneNumberLoginSampleEntityFrameworkCoreModule),
         typeof(PhoneNumberLoginSampleApplicationContractsModule)
         )]
     public class PhoneNumberLoginSampleDbMigratorModule : AbpModule

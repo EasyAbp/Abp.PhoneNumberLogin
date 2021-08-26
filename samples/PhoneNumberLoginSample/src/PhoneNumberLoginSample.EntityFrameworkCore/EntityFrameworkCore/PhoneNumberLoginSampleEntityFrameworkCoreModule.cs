@@ -46,7 +46,7 @@ namespace PhoneNumberLoginSample.EntityFrameworkCore
             Configure<AbpDbContextOptions>(options =>
             {
                 /* The main point to change your DBMS.
-                 * See also PhoneNumberLoginSampleMigrationsDbContextFactory for EF Core tooling. */
+                 * See also PhoneNumberLoginSampleDbContextFactory for EF Core tooling. */
                 options.UseSqlServer();
             });
         }

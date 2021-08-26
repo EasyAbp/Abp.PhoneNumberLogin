@@ -46,7 +46,7 @@ namespace PhoneNumberLoginSample.Web
     [DependsOn(
         typeof(PhoneNumberLoginSampleHttpApiModule),
         typeof(PhoneNumberLoginSampleApplicationModule),
-        typeof(PhoneNumberLoginSampleEntityFrameworkCoreDbMigrationsModule),
+        typeof(PhoneNumberLoginSampleEntityFrameworkCoreModule),
         typeof(AbpPhoneNumberLoginWebModule),
         typeof(AbpAutofacModule),
         typeof(AbpIdentityWebModule),

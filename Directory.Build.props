@@ -1,9 +1,9 @@
 <Project>
   <PropertyGroup>
 
-    <AbpVersion>4.3.0</AbpVersion>
-    <EasyAbpAbpVerificationCodeModuleVersion>0.2.5</EasyAbpAbpVerificationCodeModuleVersion>
-    <EasyAbpAbpSmsTencentCloudModuleVersion>0.5.3</EasyAbpAbpSmsTencentCloudModuleVersion>
+    <AbpVersion>4.4.0</AbpVersion>
+    <EasyAbpAbpVerificationCodeModuleVersion>0.2.6</EasyAbpAbpVerificationCodeModuleVersion>
+    <EasyAbpAbpSmsTencentCloudModuleVersion>0.5.5</EasyAbpAbpSmsTencentCloudModuleVersion>
 
   </PropertyGroup>
 </Project>

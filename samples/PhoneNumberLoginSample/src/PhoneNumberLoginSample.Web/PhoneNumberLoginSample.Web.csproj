@@ -40,7 +40,7 @@
     <ProjectReference Include="..\..\..\..\src\EasyAbp.Abp.PhoneNumberLogin.Web\EasyAbp.Abp.PhoneNumberLogin.Web.csproj" />
     <ProjectReference Include="..\PhoneNumberLoginSample.Application\PhoneNumberLoginSample.Application.csproj" />
     <ProjectReference Include="..\PhoneNumberLoginSample.HttpApi\PhoneNumberLoginSample.HttpApi.csproj" />
-    <ProjectReference Include="..\PhoneNumberLoginSample.EntityFrameworkCore.DbMigrations\PhoneNumberLoginSample.EntityFrameworkCore.DbMigrations.csproj" />
+    <ProjectReference Include="..\PhoneNumberLoginSample.EntityFrameworkCore\PhoneNumberLoginSample.EntityFrameworkCore.csproj" />
     <PackageReference Include="Volo.Abp.AspNetCore.Mvc.UI.Theme.Basic" Version="$(AbpVersion)" />
     <PackageReference Include="Volo.Abp.Autofac" Version="$(AbpVersion)" />
     <PackageReference Include="Volo.Abp.AspNetCore.Authentication.JwtBearer" Version="$(AbpVersion)" />

@@ -11,7 +11,7 @@ using Volo.Abp.Modularity;
 namespace PhoneNumberLoginSample.EntityFrameworkCore
 {
     [DependsOn(
-        typeof(PhoneNumberLoginSampleEntityFrameworkCoreDbMigrationsModule),
+        typeof(PhoneNumberLoginSampleEntityFrameworkCoreModule),
         typeof(PhoneNumberLoginSampleTestBaseModule),
         typeof(AbpEntityFrameworkCoreSqliteModule)
         )]
@@ -47,11 +47,11 @@ namespace PhoneNumberLoginSample.EntityFrameworkCore
             var connection = new SqliteConnection("Data Source=:memory:");
             connection.Open();
 
-            var options = new DbContextOptionsBuilder<PhoneNumberLoginSampleMigrationsDbContext>()
+            var options = new DbContextOptionsBuilder<PhoneNumberLoginSampleDbContext>()
                 .UseSqlite(connection)
                 .Options;
 
-            using (var context = new PhoneNumberLoginSampleMigrationsDbContext(options))
+            using (var context = new PhoneNumberLoginSampleDbContext(options))
             {
                 context.GetService<IRelationalDatabaseCreator>().CreateTables();
             }
