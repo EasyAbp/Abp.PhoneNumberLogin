@@ -6,7 +6,7 @@ using Volo.Abp;
 
 namespace EasyAbp.Abp.PhoneNumberLogin.Identity
 {
-    [RemoteService(Name = "EasyAbpAbpPhoneNumberLogin")]
+    [RemoteService(Name = AbpPhoneNumberLoginRemoteServiceConsts.RemoteServiceName)]
     [ControllerName("IdentityUserLookup")]
     [Route("/api/identity/users/lookup")]
     public class UniquePhoneNumberUserLookupController : PhoneNumberLoginController, IUniquePhoneNumberUserLookupAppService

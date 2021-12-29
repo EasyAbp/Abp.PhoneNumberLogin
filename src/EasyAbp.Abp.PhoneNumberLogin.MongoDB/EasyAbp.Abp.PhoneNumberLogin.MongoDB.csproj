@@ -3,17 +3,13 @@
   <Import Project="..\..\common.props" />
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <RootNamespace />
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Volo.Abp.MongoDB" Version="$(AbpVersion)" />
     <ProjectReference Include="..\EasyAbp.Abp.PhoneNumberLogin.Domain\EasyAbp.Abp.PhoneNumberLogin.Domain.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="EasyAbp\Abp\PhoneNumberLogin" />
   </ItemGroup>
 
 </Project>

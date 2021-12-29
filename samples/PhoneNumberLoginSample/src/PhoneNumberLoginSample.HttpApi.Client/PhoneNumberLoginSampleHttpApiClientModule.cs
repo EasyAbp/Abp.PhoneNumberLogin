@@ -7,6 +7,7 @@ using Volo.Abp.Modularity;
 using Volo.Abp.PermissionManagement;
 using Volo.Abp.SettingManagement;
 using Volo.Abp.TenantManagement;
+using Volo.Abp.VirtualFileSystem;
 
 namespace PhoneNumberLoginSample
 {
@@ -30,6 +31,12 @@ namespace PhoneNumberLoginSample
                 typeof(PhoneNumberLoginSampleApplicationContractsModule).Assembly,
                 RemoteServiceName
             );
+            
+            Configure<AbpVirtualFileSystemOptions>(options =>
+            {
+                options.FileSets.AddEmbedded<PhoneNumberLoginSampleApplicationContractsModule>();
+            });
+
         }
     }
 }

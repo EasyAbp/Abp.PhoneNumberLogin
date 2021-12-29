@@ -5,7 +5,7 @@ namespace PhoneNumberLoginSample.Controllers
 {
     /* Inherit your controllers from this class.
      */
-    public abstract class PhoneNumberLoginSampleController : AbpController
+    public abstract class PhoneNumberLoginSampleController : AbpControllerBase
     {
         protected PhoneNumberLoginSampleController()
         {

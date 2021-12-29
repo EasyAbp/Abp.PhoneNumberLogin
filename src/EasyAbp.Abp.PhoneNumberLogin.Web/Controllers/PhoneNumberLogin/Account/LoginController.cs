@@ -16,7 +16,7 @@ using SignInResult = Microsoft.AspNetCore.Identity.SignInResult;
 namespace EasyAbp.Abp.PhoneNumberLogin.Web.Controllers.PhoneNumberLogin.Account
 {
     [Route("/api/phone-number-login/account")]
-    public class LoginController : AbpController
+    public class LoginController : AbpControllerBase
     {
         private readonly ISettingProvider _settingProvider;
         private readonly SignInManager<IdentityUser> _signInManager;

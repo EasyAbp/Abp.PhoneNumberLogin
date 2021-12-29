@@ -66,7 +66,7 @@ namespace EasyAbp.Abp.PhoneNumberLogin
             {
                 httpClient.SetBearerToken(accessToken);
 
-                var url = _configuration["RemoteServices:PhoneNumberLogin:BaseUrl"] +
+                var url = _configuration["RemoteServices:EasyAbpAbpPhoneNumberLogin:BaseUrl"] +
                           "api/PhoneNumberLogin/sample/authorized";
 
                 var responseMessage = await httpClient.GetAsync(url);
@@ -127,7 +127,7 @@ namespace EasyAbp.Abp.PhoneNumberLogin
             {
                 httpClient.SetBearerToken(tokenResponse.AccessToken);
 
-                var url = _configuration["RemoteServices:PhoneNumberLogin:BaseUrl"] +
+                var url = _configuration["RemoteServices:EasyAbpAbpPhoneNumberLogin:BaseUrl"] +
                           "api/PhoneNumberLogin/sample/authorized";
 
                 var responseMessage = await httpClient.GetAsync(url);

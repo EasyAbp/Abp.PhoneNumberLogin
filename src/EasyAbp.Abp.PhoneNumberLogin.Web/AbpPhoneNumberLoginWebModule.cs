@@ -15,7 +15,7 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Web
 {
     [DependsOn(
         typeof(AbpPhoneNumberLoginDomainModule),
-        typeof(AbpPhoneNumberLoginHttpApiModule),
+        typeof(AbpPhoneNumberLoginApplicationContractsModule),
         typeof(AbpAspNetCoreMvcUiThemeSharedModule),
         typeof(AbpAccountWebModule),
         typeof(AbpIdentityDomainSharedModule),
