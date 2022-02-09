@@ -10,14 +10,14 @@ namespace PhoneNumberLoginSample.HttpApi.Client.ConsoleTestApp
     {
         public async Task StartAsync(CancellationToken cancellationToken)
         {
-            using (var application = AbpApplicationFactory.Create<PhoneNumberLoginSampleConsoleApiClientModule>())
+            using (var application = await AbpApplicationFactory.CreateAsync<PhoneNumberLoginSampleConsoleApiClientModule>())
             {
-                application.Initialize();
+                await application.InitializeAsync();
 
                 var demo = application.ServiceProvider.GetRequiredService<ClientDemoService>();
                 await demo.RunAsync();
 
-                application.Shutdown();
+                await application.ShutdownAsync();
             }
         }
 
