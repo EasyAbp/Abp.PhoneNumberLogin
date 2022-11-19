@@ -138,23 +138,23 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Account
 
             return new TryRegisterAndRequestTokenResult(
                 registerUser ? RegisterResult.RegistrationSuccess : RegisterResult.UserAlreadyExists,
-                (await RequestIds4LoginByCodeAsync(input.PhoneNumber, code))?.Raw,
+                (await RequestAuthServerLoginByCodeAsync(input.PhoneNumber, code))?.Raw,
                 CurrentTenant.Id);
         }
 
         public virtual async Task<string> RequestTokenByPasswordAsync(RequestTokenByPasswordInput input)
         {
-            return (await RequestIds4LoginByPasswordAsync(input.PhoneNumber, input.Password))?.Raw;
+            return (await RequestAuthServerLoginByPasswordAsync(input.PhoneNumber, input.Password))?.Raw;
         }
 
         public virtual async Task<string> RequestTokenByVerificationCodeAsync(RequestTokenByVerificationCodeInput input)
         {
-            return (await RequestIds4LoginByCodeAsync(input.PhoneNumber, input.VerificationCode))?.Raw;
+            return (await RequestAuthServerLoginByCodeAsync(input.PhoneNumber, input.VerificationCode))?.Raw;
         }
 
         public virtual async Task<string> RefreshTokenAsync(RefreshTokenInput input)
         {
-            return (await RequestIds4RefreshAsync(input.RefreshToken))?.Raw;
+            return (await RequestAuthServerRefreshAsync(input.RefreshToken))?.Raw;
         }
 
         protected virtual async Task<bool> GetValidateResultAsync(string phoneNumber, string code, VerificationCodeType type)
@@ -192,7 +192,7 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Account
 
         }
 
-        protected virtual async Task<TokenResponse> RequestIds4LoginByCodeAsync(string phoneNumber, string code)
+        protected virtual async Task<TokenResponse> RequestAuthServerLoginByCodeAsync(string phoneNumber, string code)
         {
             var client = _httpClientFactory.CreateClient(PhoneNumberLoginConsts.IdentityServerHttpClientName);
 
@@ -206,7 +206,7 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Account
 
                 Parameters =
                 {
-                    {"phonenumber", phoneNumber},
+                    {"phone_number", phoneNumber},
                     {"code", code}
                 }
             };
@@ -216,7 +216,7 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Account
             return await client.RequestTokenAsync(request);
         }
 
-        protected virtual async Task<TokenResponse> RequestIds4LoginByPasswordAsync(string phoneNumber, string password)
+        protected virtual async Task<TokenResponse> RequestAuthServerLoginByPasswordAsync(string phoneNumber, string password)
         {
             var client = _httpClientFactory.CreateClient(PhoneNumberLoginConsts.IdentityServerHttpClientName);
 
@@ -230,7 +230,7 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Account
 
                 Parameters =
                 {
-                    {"phonenumber", phoneNumber},
+                    {"phone_number", phoneNumber},
                     {"password", password}
                 }
             };
@@ -240,7 +240,7 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Account
             return await client.RequestTokenAsync(request);
         }
 
-        protected virtual async Task<TokenResponse> RequestIds4RefreshAsync(string refreshToken)
+        protected virtual async Task<TokenResponse> RequestAuthServerRefreshAsync(string refreshToken)
         {
             var client = _httpClientFactory.CreateClient(PhoneNumberLoginConsts.IdentityServerHttpClientName);
 

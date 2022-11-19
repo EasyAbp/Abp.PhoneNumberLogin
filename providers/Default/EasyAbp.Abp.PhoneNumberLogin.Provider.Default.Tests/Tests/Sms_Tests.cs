@@ -29,6 +29,7 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Provider.Default.Tests.Tests
             var text = await templateRenderer.RenderAsync(
                 templateName: "PhoneNumberLoginSmsText_Register",
                 model: new {LifespanMinutes = Convert.ToInt32(Math.Floor(await GetRegisterCodeCacheSecondsAsync() / 60f))},
+                cultureName: "en",
                 globalContext: new Dictionary<string, object>
                 {
                     {"phoneNumber", phoneNumber},
