@@ -198,11 +198,11 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Account
 
             var request = new TokenRequest
             {
-                Address = _configuration["AuthServer:Authority"] + "/connect/token",
+                Address = _configuration["AbpPhoneNumberLogin:AuthServer:Authority"] + "/connect/token",
                 GrantType = PhoneNumberLoginConsts.GrantType,
 
-                ClientId = _configuration["AuthServer:ClientId"],
-                ClientSecret = _configuration["AuthServer:ClientSecret"],
+                ClientId = _configuration["AbpPhoneNumberLogin:AuthServer:ClientId"],
+                ClientSecret = _configuration["AbpPhoneNumberLogin:AuthServer:ClientSecret"],
 
                 Parameters =
                 {
@@ -222,11 +222,11 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Account
 
             var request = new TokenRequest
             {
-                Address = _configuration["AuthServer:Authority"] + "/connect/token",
+                Address = _configuration["AbpPhoneNumberLogin:AuthServer:Authority"] + "/connect/token",
                 GrantType = PhoneNumberLoginConsts.GrantType,
 
-                ClientId = _configuration["AuthServer:ClientId"],
-                ClientSecret = _configuration["AuthServer:ClientSecret"],
+                ClientId = _configuration["AbpPhoneNumberLogin:AuthServer:ClientId"],
+                ClientSecret = _configuration["AbpPhoneNumberLogin:AuthServer:ClientSecret"],
 
                 Parameters =
                 {
@@ -246,10 +246,10 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Account
 
             var request = new RefreshTokenRequest
             {
-                Address = _configuration["AuthServer:Authority"] + "/connect/token",
+                Address = _configuration["AbpPhoneNumberLogin:AuthServer:Authority"] + "/connect/token",
 
-                ClientId = _configuration["AuthServer:ClientId"],
-                ClientSecret = _configuration["AuthServer:ClientSecret"],
+                ClientId = _configuration["AbpPhoneNumberLogin:AuthServer:ClientId"],
+                ClientSecret = _configuration["AbpPhoneNumberLogin:AuthServer:ClientSecret"],
 
                 RefreshToken = refreshToken
             };
