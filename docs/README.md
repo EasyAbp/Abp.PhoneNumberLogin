@@ -3,7 +3,7 @@
 [![ABP version](https://img.shields.io/badge/dynamic/xml?style=flat-square&color=yellow&label=abp&query=%2F%2FProject%2FPropertyGroup%2FAbpVersion&url=https%3A%2F%2Fraw.githubusercontent.com%2FEasyAbp%2FAbp.PhoneNumberLogin%2Fmain%2FDirectory.Build.props)](https://abp.io)
 [![NuGet](https://img.shields.io/nuget/v/EasyAbp.Abp.PhoneNumberLogin.Domain.Shared.svg?style=flat-square)](https://www.nuget.org/packages/EasyAbp.Abp.PhoneNumberLogin.Domain.Shared)
 [![NuGet Download](https://img.shields.io/nuget/dt/EasyAbp.Abp.PhoneNumberLogin.Domain.Shared.svg?style=flat-square)](https://www.nuget.org/packages/EasyAbp.Abp.PhoneNumberLogin.Domain.Shared)
-[![Discord online](https://badgen.net/discord/online-members/S6QaezrCRq?label=Discord)](https://discord.gg/S6QaezrCRq)
+[![Discord online](https://badgen.net/discord/online-members/xyg8TrRa27?label=Discord)](https://discord.gg/xyg8TrRa27)
 [![GitHub stars](https://img.shields.io/github/stars/EasyAbp/Abp.PhoneNumberLogin?style=social)](https://www.github.com/EasyAbp/Abp.PhoneNumberLogin)
 
 An abp module to avoid duplicate user phone numbers being confirmed and providing phone number confirmation and phone number login features and more.
@@ -42,7 +42,7 @@ Ensure the `EasyAbp.Abp.PhoneNumberLogin.Web` module was installed.
 
 2. Register an account with a confirmed phone number or confirm your phone number of your existing account.
 
-4. Log out and try to log in by phone number and password (or verification code).
+3. Log out and try to log in by phone number and password (or verification code).
 
 ### Identity Server Token Endpoint
 
@@ -57,7 +57,8 @@ Ensure the `EasyAbp.Abp.PhoneNumberLogin.Web` module was installed.
 
 * Refresh a Token
 
-    1. Request `/api/phone-number-login/account/refresh-token` in POST method. ([see input model](https://github.com/EasyAbp/Abp.PhoneNumberLogin/blob/main/src/EasyAbp.Abp.PhoneNumberLogin.Application.Contracts/EasyAbp/Abp/PhoneNumberLogin/Account/Dtos/RefreshTokenInput.cs))
+    * Request `/api/phone-number-login/account/refresh-token` in POST method. ([see input model](https://github.com/EasyAbp/Abp.PhoneNumberLogin/blob/main/src/EasyAbp.Abp.PhoneNumberLogin.Application.Contracts/EasyAbp/Abp/PhoneNumberLogin/Account/Dtos/RefreshTokenInput.cs))
+    * You can also use `/connect/refresh`
 
 ![LoginByPhoneNumberAndPassword](/docs/images/LoginByPhoneNumberAndPassword.png)
 

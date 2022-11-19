@@ -40,16 +40,19 @@
     <ProjectReference Include="..\PhoneNumberLoginSample.Application\PhoneNumberLoginSample.Application.csproj" />
     <ProjectReference Include="..\PhoneNumberLoginSample.HttpApi\PhoneNumberLoginSample.HttpApi.csproj" />
     <ProjectReference Include="..\PhoneNumberLoginSample.EntityFrameworkCore\PhoneNumberLoginSample.EntityFrameworkCore.csproj" />
-    <PackageReference Include="Volo.Abp.AspNetCore.Mvc.UI.Theme.LeptonXLite" Version="1.0.0-beta.3" />
+    <PackageReference Include="Volo.Abp.AspNetCore.Mvc.UI.Theme.LeptonXLite" Version="1.0.0" />
     <PackageReference Include="Volo.Abp.Autofac" Version="$(AbpVersion)" />
-    <PackageReference Include="Volo.Abp.AspNetCore.Authentication.JwtBearer" Version="$(AbpVersion)" />
     <PackageReference Include="Volo.Abp.AspNetCore.Serilog" Version="$(AbpVersion)" />
     <PackageReference Include="Volo.Abp.Identity.Web" Version="$(AbpVersion)" />
-    <PackageReference Include="Volo.Abp.Account.Web.IdentityServer" Version="$(AbpVersion)" />
+    <PackageReference Include="Volo.Abp.Account.Web.OpenIddict" Version="$(AbpVersion)" />
     <PackageReference Include="Volo.Abp.TenantManagement.Web" Version="$(AbpVersion)" />
     <PackageReference Include="Volo.Abp.FeatureManagement.Web" Version="$(AbpVersion)" />
     <PackageReference Include="Volo.Abp.SettingManagement.Web" Version="$(AbpVersion)" />
     <PackageReference Include="Volo.Abp.Swashbuckle" Version="$(AbpVersion)" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="wwwroot" />
   </ItemGroup>
 
 </Project>

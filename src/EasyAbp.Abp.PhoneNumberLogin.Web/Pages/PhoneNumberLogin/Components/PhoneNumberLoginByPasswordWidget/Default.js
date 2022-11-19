@@ -40,7 +40,7 @@
                     if (returnUrlHash) targetUrl += returnUrlHash;
                     document.location.href = targetUrl;
                 } else {
-                    abp.message.error(abp.localization.localize(data.description))
+                    abp.message.error(abp.localization.localize(data.errorMessage))
                 }
             },
         })
