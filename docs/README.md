@@ -18,7 +18,8 @@ We have launched an online demo for this module: [https://phonelogin.samples.eas
 
     * EasyAbp.Abp.PhoneNumberLogin.Application
     * EasyAbp.Abp.PhoneNumberLogin.Application.Contracts
-    * EasyAbp.Abp.PhoneNumberLogin.Domain
+    * (Exclusive) EasyAbp.Abp.PhoneNumberLogin.Domain.OpenIddict
+    * (Exclusive) EasyAbp.Abp.PhoneNumberLogin.Domain.Ids4
     * EasyAbp.Abp.PhoneNumberLogin.Domain.Shared
     * EasyAbp.Abp.PhoneNumberLogin.EntityFrameworkCore
     * EasyAbp.Abp.PhoneNumberLogin.HttpApi
@@ -31,6 +32,33 @@ We have launched an online demo for this module: [https://phonelogin.samples.eas
 1. Add `builder.ConfigureAbpPhoneNumberLogin();` to the `OnModelCreating()` method in **MyProjectMigrationsDbContext.cs**.
 
 1. Add EF Core migrations and update your database. See: [ABP document](https://docs.abp.io/en/abp/latest/Tutorials/Part-1?UI=MVC&DB=EF#add-database-migration).
+
+1. Specify a auth server in the appsettings.json file of the Web/Host project.
+   ```json
+   {
+     "AbpPhoneNumberLogin": {
+       "AuthServer": {
+         "Authority": "https://localhost:44395",
+         "ClientId": "MyProjectName_App",
+         "ClientSecret": "1q2w3e*"
+       }
+     }
+   }
+   ```
+
+1. Add the `PhoneNumberLogin_credentials` grant type in OpenIddictDataSeedContributor.
+    ```CSharp
+    grantTypes: new List<string>
+    {
+        OpenIddictConstants.GrantTypes.AuthorizationCode,
+        OpenIddictConstants.GrantTypes.Password,
+        OpenIddictConstants.GrantTypes.ClientCredentials,
+        OpenIddictConstants.GrantTypes.RefreshToken,
+        PhoneNumberLoginConsts.GrantType // add this grant type
+    }
+    ```
+
+1. Run the DbMigrator project to create the client. Notice that you must manually add the grant type if your client already exists.
 
 ## Usage
 
@@ -58,7 +86,7 @@ Ensure the `EasyAbp.Abp.PhoneNumberLogin.Web` module was installed.
 * Refresh a Token
 
     * Request `/api/phone-number-login/account/refresh-token` in POST method. ([see input model](https://github.com/EasyAbp/Abp.PhoneNumberLogin/blob/main/src/EasyAbp.Abp.PhoneNumberLogin.Application.Contracts/EasyAbp/Abp/PhoneNumberLogin/Account/Dtos/RefreshTokenInput.cs))
-    * You can also use `/connect/refresh`
+    * You can also use `/connect/token` to refresh a token.
 
 ![LoginByPhoneNumberAndPassword](/docs/images/LoginByPhoneNumberAndPassword.png)
 

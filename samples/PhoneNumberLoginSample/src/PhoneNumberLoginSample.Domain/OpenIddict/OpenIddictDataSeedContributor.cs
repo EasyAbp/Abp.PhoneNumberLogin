@@ -125,7 +125,6 @@ public class OpenIddictDataSeedContributor : IDataSeedContributor, ITransientDep
                     OpenIddictConstants.GrantTypes.ClientCredentials,
                     OpenIddictConstants.GrantTypes.RefreshToken,
                     PhoneNumberLoginConsts.GrantType // add this grant type
-
                 },
                 scopes: commonScopes,
                 redirectUri: consoleAndAngularClientRootUrl,
