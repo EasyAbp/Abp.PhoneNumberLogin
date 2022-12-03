@@ -58,6 +58,21 @@ We have launched an online demo for this module: [https://phonelogin.samples.eas
     }
     ```
 
+1. Find these cocdes in OpenIddictDataSeedContributor
+    ```CSharp
+    if (grantType == OpenIddictConstants.GrantTypes.ClientCredentials)
+    {
+        application.Permissions.Add(OpenIddictConstants.Permissions.GrantTypes.ClientCredentials);
+    }
+    ```
+    and add these codes on the following line
+    ```CSharp
+    if (grantType == WeChatMiniProgramConsts.GrantType)
+    {
+        application.Permissions.Add($"gt:{WeChatMiniProgramConsts.GrantType}");
+    }
+    ```
+
 1. Run the DbMigrator project to create the client. Notice that you must manually add the grant type if your client already exists.
 
 ## Usage
