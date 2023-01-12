@@ -3,13 +3,13 @@
   <Import Project="..\..\..\common.props" />
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
     <RootNamespace />
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Volo.Abp.Sms" Version="$(AbpVersion)" />
-    <PackageReference Include="Volo.Abp.TextTemplating" Version="$(AbpVersion)" />
+    <PackageReference Include="Volo.Abp.TextTemplating.Scriban" Version="$(AbpVersion)" />
     <ProjectReference Include="..\..\..\src\EasyAbp.Abp.PhoneNumberLogin.Application\EasyAbp.Abp.PhoneNumberLogin.Application.csproj" />
   </ItemGroup>
 

@@ -5,7 +5,7 @@ using Volo.Abp.Localization;
 using Volo.Abp.Localization.ExceptionHandling;
 using Volo.Abp.Modularity;
 using Volo.Abp.Sms;
-using Volo.Abp.TextTemplating;
+using Volo.Abp.TextTemplating.Scriban;
 using Volo.Abp.Validation.Localization;
 using Volo.Abp.VirtualFileSystem;
 
@@ -13,7 +13,7 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Provider.Default
 {
     [DependsOn(
         typeof(AbpSmsModule),
-        typeof(AbpTextTemplatingModule),
+        typeof(AbpTextTemplatingScribanModule),
         typeof(AbpPhoneNumberLoginApplicationModule)
     )]
     public class AbpPhoneNumberLoginProviderDefaultModule : AbpModule

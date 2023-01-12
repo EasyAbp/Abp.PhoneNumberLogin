@@ -1,13 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net6.0</TargetFramework>
+    <TargetFramework>net7.0</TargetFramework>
     <RootNamespace>EasyAbp.Abp.PhoneNumberLogin</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.2.0" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="6.0.*" />
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="7.0.0" />
     <PackageReference Include="Volo.Abp.PermissionManagement.EntityFrameworkCore" Version="$(AbpVersion)" />
     <ProjectReference Include="..\..\src\EasyAbp.Abp.PhoneNumberLogin.EntityFrameworkCore\EasyAbp.Abp.PhoneNumberLogin.EntityFrameworkCore.csproj" />
     <ProjectReference Include="..\EasyAbp.Abp.PhoneNumberLogin.TestBase\EasyAbp.Abp.PhoneNumberLogin.TestBase.csproj" />
