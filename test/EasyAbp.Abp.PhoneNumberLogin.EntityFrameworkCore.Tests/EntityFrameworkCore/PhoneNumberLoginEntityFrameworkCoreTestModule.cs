@@ -7,6 +7,7 @@ using Volo.Abp.EntityFrameworkCore.Sqlite;
 using Volo.Abp.Identity.EntityFrameworkCore;
 using Volo.Abp.Modularity;
 using Volo.Abp.PermissionManagement.EntityFrameworkCore;
+using Volo.Abp.Uow;
 
 namespace EasyAbp.Abp.PhoneNumberLogin.EntityFrameworkCore
 {
@@ -21,6 +22,7 @@ namespace EasyAbp.Abp.PhoneNumberLogin.EntityFrameworkCore
     {
         public override void ConfigureServices(ServiceConfigurationContext context)
         {
+            context.Services.AddAlwaysDisableUnitOfWorkTransaction();
             var sqliteConnection = CreateDatabaseAndGetConnection();
 
             Configure<AbpDbContextOptions>(options =>
