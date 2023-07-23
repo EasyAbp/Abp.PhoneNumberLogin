@@ -31,8 +31,8 @@ namespace EasyAbp.Abp.PhoneNumberLogin
             var identityUserManager = context.HttpContext.RequestServices.GetRequiredService<IdentityUserManager>();
             var signInManager = context.HttpContext.RequestServices.GetRequiredService<SignInManager<IdentityUser>>();
             var scopeManager = context.HttpContext.RequestServices.GetRequiredService<IOpenIddictScopeManager>();
-            var openIddictClaimDestinationsManager = context.HttpContext.RequestServices
-                .GetRequiredService<AbpOpenIddictClaimDestinationsManager>();
+            var abpOpenIddictClaimsPrincipalManager = context.HttpContext.RequestServices
+                .GetRequiredService<AbpOpenIddictClaimsPrincipalManager>();
             var identitySecurityLogManager =
                 context.HttpContext.RequestServices.GetRequiredService<IdentitySecurityLogManager>();
             var localizer = context.HttpContext.RequestServices
@@ -120,7 +120,7 @@ namespace EasyAbp.Abp.PhoneNumberLogin
             principal.SetScopes(context.Request.GetScopes());
             principal.SetResources(await GetResourcesAsync(context.Request.GetScopes(), scopeManager));
 
-            await openIddictClaimDestinationsManager.SetAsync(principal);
+            await abpOpenIddictClaimsPrincipalManager.HandleAsync(context.Request, principal);
 
             await identitySecurityLogManager.SaveAsync(
                 new IdentitySecurityLogContext

@@ -1,4 +1,5 @@
-﻿using Volo.Abp.Modularity;
+﻿using Volo.Abp.Domain;
+using Volo.Abp.Modularity;
 using Volo.Abp.Localization;
 using EasyAbp.Abp.PhoneNumberLogin.Localization;
 using Volo.Abp.Account;
@@ -13,7 +14,8 @@ namespace EasyAbp.Abp.PhoneNumberLogin
 {
     [DependsOn(
         typeof(AbpAccountApplicationContractsModule),
-        typeof(AbpValidationModule)
+        typeof(AbpValidationModule),
+        typeof(AbpDddDomainSharedModule)
     )]
     public class AbpPhoneNumberLoginDomainSharedModule : AbpModule
     {
