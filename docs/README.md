@@ -8,10 +8,6 @@
 
 An abp module to avoid duplicate user phone numbers being confirmed and providing phone number confirmation and phone number login features and more.
 
-## Online Demo
-
-We have launched an online demo for this module: [https://phonelogin.samples.easyabp.io](https://phonelogin.samples.easyabp.io)
-
 ## Installation
 
 1. Install the following NuGet packages. ([see how](https://github.com/EasyAbp/EasyAbpGuide/blob/master/docs/How-To.md#add-nuget-packages))
