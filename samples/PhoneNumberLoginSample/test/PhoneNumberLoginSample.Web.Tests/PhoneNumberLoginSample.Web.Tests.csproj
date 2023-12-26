@@ -12,9 +12,11 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.8.0" />
+    <PackageReference Include="HtmlAgilityPack" Version="1.11.54" />
     <ProjectReference Include="..\PhoneNumberLoginSample.Application.Tests\PhoneNumberLoginSample.Application.Tests.csproj" />
     <ProjectReference Include="..\..\src\PhoneNumberLoginSample.Web\PhoneNumberLoginSample.Web.csproj" />
     <PackageReference Include="Volo.Abp.AspNetCore.TestBase" Version="$(AbpVersion)" />
+    <ProjectReference Include="..\PhoneNumberLoginSample.EntityFrameworkCore.Tests\PhoneNumberLoginSample.EntityFrameworkCore.Tests.csproj" />
   </ItemGroup>
 
   <ItemGroup>

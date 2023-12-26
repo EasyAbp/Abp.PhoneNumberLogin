@@ -10,7 +10,7 @@ using Volo.Abp.AspNetCore.TestBase;
 
 namespace PhoneNumberLoginSample
 {
-    public abstract class PhoneNumberLoginSampleWebTestBase : AbpWebApplicationFactoryIntegratedTest<PhoneNumberLoginSampleWebTestStartup>
+    public abstract class PhoneNumberLoginSampleWebTestBase : AbpWebApplicationFactoryIntegratedTest<Program>
     {
         protected virtual async Task<T> GetResponseAsObjectAsync<T>(string url, HttpStatusCode expectedStatusCode = HttpStatusCode.OK)
         {
