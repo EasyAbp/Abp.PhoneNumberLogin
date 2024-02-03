@@ -1,15 +1,20 @@
 ﻿using EasyAbp.Abp.PhoneNumberLogin.Account.Dtos;
 using EasyAbp.Abp.PhoneNumberLogin.Identity;
+using EasyAbp.Abp.PhoneNumberLogin.Localization;
 using EasyAbp.Abp.PhoneNumberLogin.Settings;
 using EasyAbp.Abp.VerificationCode;
 using IdentityModel.Client;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.Extensions.Caching.Distributed;
 using Microsoft.Extensions.Configuration;
+using Microsoft.Extensions.Localization;
 using Microsoft.Extensions.Options;
 using System;
 using System.Net.Http;
 using System.Threading.Tasks;
+using Volo.Abp;
 using Volo.Abp.Application.Services;
+using Volo.Abp.Caching;
 using Volo.Abp.Identity;
 using Volo.Abp.Settings;
 using Volo.Abp.Uow;
@@ -28,6 +33,8 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Account
         private readonly IHttpClientFactory _httpClientFactory;
         private readonly IConfiguration _configuration;
         private readonly ISettingProvider _settingProvider;
+        private readonly IDistributedCache<string> _distributedCache;
+        private readonly IStringLocalizer<PhoneNumberLoginResource> _localizer;
 
         public PhoneNumberLoginAccountAppService(
             IPhoneNumberLoginVerificationCodeSender phoneNumberLoginVerificationCodeSender,
@@ -38,7 +45,9 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Account
             IHttpClientFactory httpClientFactory,
             IConfiguration configuration,
             ISettingProvider settingProvider,
-            IdentityUserManager identityUserManager)
+            IdentityUserManager identityUserManager,
+            IDistributedCache<string> distributedCache,
+            IStringLocalizer<PhoneNumberLoginResource> localizer)
         {
             _phoneNumberLoginVerificationCodeSender = phoneNumberLoginVerificationCodeSender;
             _phoneNumberLoginNewUserCreator = phoneNumberLoginNewUserCreator;
@@ -49,6 +58,8 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Account
             _httpClientFactory = httpClientFactory;
             _settingProvider = settingProvider;
             _configuration = configuration;
+            _distributedCache = distributedCache;
+            _localizer = localizer;
         }
 
         public virtual async Task<SendVerificationCodeResult> SendVerificationCodeAsync(SendVerificationCodeInput input)
@@ -99,11 +110,21 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Account
 
         public virtual async Task ResetPasswordAsync(ResetPasswordWithPhoneNumberInput input)
         {
+            var result = await GetValidateResultAsync(input.PhoneNumber, input.VerificationCode, VerificationCodeType.ResetPassword);
+            if (!result)
+            {
+                throw new InvalidVerificationCodeException();
+            }
             await _identityOptions.SetAsync();
 
             var identityUser = await _uniquePhoneNumberIdentityUserRepository.GetByConfirmedPhoneNumberAsync(input.PhoneNumber);
-
-            (await _identityUserManager.ResetPasswordAsync(identityUser, input.VerificationCode, input.Password)).CheckErrors();
+            // VerifyTwoFactor
+            if (!await _identityUserManager.VerifyTwoFactorTokenAsync(identityUser, TokenOptions.DefaultPhoneProvider, input.VerificationCode))
+            {
+                throw new UserFriendlyException(_localizer["InvalidVerificationCode"]);
+            }
+            var resetPwdToken = await _identityUserManager.GeneratePasswordResetTokenAsync(identityUser);
+            (await _identityUserManager.ResetPasswordAsync(identityUser, resetPwdToken, input.Password)).CheckErrors();
         }
 
         public virtual async Task<TryRegisterAndRequestTokenResult> TryRegisterAndRequestTokenAsync(TryRegisterAndRequestTokenInput input)
@@ -164,9 +185,8 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Account
             {
                 case VerificationCodeType.ResetPassword:
 
-                    // Not able to validate reset password token here using default asp.net identity implementation
-
-                    return true;
+                    var tempCode = await _distributedCache.GetAsync($"{PhoneNumberLoginConsts.VerificationCodeCachePrefix}:{type}:{phoneNumber}");
+                    return tempCode.Equals(code);
 
                 case VerificationCodeType.Register:
 
@@ -276,7 +296,19 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Account
             switch (type)
             {
                 case VerificationCodeType.ResetPassword:
-                    code = await _identityUserManager.GeneratePasswordResetTokenAsync(identityUser);
+                    if (identityUser == null)
+                        throw new UserFriendlyException(_localizer["InvalidPhoneNumber"]);
+                    var tspan = await GetRegisterCodeCacheSecondsAsync();
+                    code = await _distributedCache.GetOrAddAsync($"{PhoneNumberLoginConsts.VerificationCodeCachePrefix}:{type}:{phoneNumber}",
+                                     async () =>
+                                     {
+                                         return await _identityUserManager.GenerateTwoFactorTokenAsync(identityUser, TokenOptions.DefaultPhoneProvider);
+                                     },
+                                     () => new DistributedCacheEntryOptions
+                                     {
+                                         AbsoluteExpiration = DateTimeOffset.Now.AddSeconds(tspan)
+                                     }
+                                );
                     break;
 
                 case VerificationCodeType.Register:
