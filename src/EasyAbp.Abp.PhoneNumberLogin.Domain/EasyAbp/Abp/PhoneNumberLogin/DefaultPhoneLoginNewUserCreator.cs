@@ -57,13 +57,12 @@ namespace EasyAbp.Abp.PhoneNumberLogin
 
         protected virtual Task<string> GenerateUserNameAsync()
         {
-            return Task.FromResult("Phone_" + Guid.NewGuid());
+            return Task.FromResult($"Phone_{Guid.NewGuid()}");
         }
 
         protected virtual Task<string> GenerateEmailAsync()
         {
-            return Task.FromResult(Guid.NewGuid() + "@fake-email.com");
+            return Task.FromResult($"{Guid.NewGuid()}@fake-email.com");
         }
-
     }
 }
