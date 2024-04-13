@@ -59,7 +59,7 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Account
 
             var result = await _phoneNumberLoginVerificationCodeSender.SendAsync(input.PhoneNumber, code,
                 input.VerificationCodeType,
-                new {LifespanMinutes = Math.Floor(await GetRegisterCodeCacheSecondsAsync() / 60f)});
+                new { LifespanMinutes = Math.Floor(await GetRegisterCodeCacheSecondsAsync() / 60f) });
 
             return result ? new SendVerificationCodeResult(SendVerificationCodeResultType.Success) : new SendVerificationCodeResult(SendVerificationCodeResultType.SendsFailure);
         }
@@ -80,7 +80,6 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Account
 
         public virtual async Task<ConfirmPhoneNumberResult> ConfirmPhoneNumberAsync(ConfirmPhoneNumberInput input)
         {
-
             var result = await GetValidateResultAsync(input.PhoneNumber, input.VerificationCode, VerificationCodeType.Register);
 
             if (!result)
@@ -159,7 +158,6 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Account
 
         protected virtual async Task<bool> GetValidateResultAsync(string phoneNumber, string code, VerificationCodeType type)
         {
-
             switch (type)
             {
                 case VerificationCodeType.ResetPassword:
@@ -189,7 +187,6 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Account
             }
 
             return false;
-
         }
 
         protected virtual async Task<TokenResponse> RequestAuthServerLoginByCodeAsync(string phoneNumber, string code)
@@ -198,7 +195,7 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Account
 
             var request = new TokenRequest
             {
-                Address = _configuration["AbpPhoneNumberLogin:AuthServer:Authority"] + "/connect/token",
+                Address = $"{_configuration["AbpPhoneNumberLogin:AuthServer:Authority"]}/connect/token",
                 GrantType = PhoneNumberLoginConsts.GrantType,
 
                 ClientId = _configuration["AbpPhoneNumberLogin:AuthServer:ClientId"],
@@ -206,8 +203,8 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Account
 
                 Parameters =
                 {
-                    {"phone_number", phoneNumber},
-                    {"code", code}
+                    { "phone_number", phoneNumber },
+                    { "code", code }
                 }
             };
 
@@ -222,7 +219,7 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Account
 
             var request = new TokenRequest
             {
-                Address = _configuration["AbpPhoneNumberLogin:AuthServer:Authority"] + "/connect/token",
+                Address = $"{_configuration["AbpPhoneNumberLogin:AuthServer:Authority"]}/connect/token",
                 GrantType = PhoneNumberLoginConsts.GrantType,
 
                 ClientId = _configuration["AbpPhoneNumberLogin:AuthServer:ClientId"],
@@ -230,8 +227,8 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Account
 
                 Parameters =
                 {
-                    {"phone_number", phoneNumber},
-                    {"password", password}
+                    { "phone_number", phoneNumber },
+                    { "password", password }
                 }
             };
 
@@ -246,7 +243,7 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Account
 
             var request = new RefreshTokenRequest
             {
-                Address = _configuration["AbpPhoneNumberLogin:AuthServer:Authority"] + "/connect/token",
+                Address = $"{_configuration["AbpPhoneNumberLogin:AuthServer:Authority"]}/connect/token",
 
                 ClientId = _configuration["AbpPhoneNumberLogin:AuthServer:ClientId"],
                 ClientSecret = _configuration["AbpPhoneNumberLogin:AuthServer:ClientSecret"],

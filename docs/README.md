@@ -25,7 +25,7 @@ An abp module to avoid duplicate user phone numbers being confirmed and providin
 
 1. Add `DependsOn(typeof(Abp.PhoneNumberLoginXxxModule))` attribute to configure the module dependencies. ([see how](https://github.com/EasyAbp/EasyAbpGuide/blob/master/docs/How-To.md#add-module-dependencies))
 
-1. Add `builder.ConfigureAbpPhoneNumberLogin();` to the `OnModelCreating()` method in **MyProjectMigrationsDbContext.cs**.
+1. Add `builder.ConfigurePhoneNumberLogin();` to the `OnModelCreating()` method in **MyProjectMigrationsDbContext.cs**.
 
 1. Add EF Core migrations and update your database. See: [ABP document](https://docs.abp.io/en/abp/latest/Tutorials/Part-1?UI=MVC&DB=EF#add-database-migration).
 
