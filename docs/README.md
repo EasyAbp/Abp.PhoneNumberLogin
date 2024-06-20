@@ -63,9 +63,9 @@ An abp module to avoid duplicate user phone numbers being confirmed and providin
     ```
     and add these codes on the following line
     ```CSharp
-    if (grantType == WeChatMiniProgramConsts.GrantType)
+    if (grantType == PhoneNumberLoginConsts.GrantType)
     {
-        application.Permissions.Add($"gt:{WeChatMiniProgramConsts.GrantType}");
+        application.Permissions.Add($"gt:{PhoneNumberLoginConsts.GrantType}");
     }
     ```
 
