@@ -3,7 +3,9 @@ using PhoneNumberLoginSample;
 using Volo.Abp.AspNetCore.TestBase;
 
 var builder = WebApplication.CreateBuilder();
-await builder.RunAbpModuleAsync<PhoneNumberLoginSampleWebTestModule>();
+
+builder.Environment.ContentRootPath = GetWebProjectContentRootPathHelper.Get("PhoneNumberLoginSample.Web.csproj");
+await builder.RunAbpModuleAsync<PhoneNumberLoginSampleWebTestModule>(applicationName: "PhoneNumberLoginSample.Web" );
 
 public partial class Program
 {
