@@ -1,4 +1,6 @@
-﻿using Microsoft.AspNetCore.Authentication;
+﻿using JetBrains.Annotations;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
@@ -17,12 +19,11 @@ namespace PhoneNumberLoginSample.Web.Pages.Account
         [BindProperty(SupportsGet = true)]
         public string Method { get; set; } = PhoneNumberMethodName;
 
-        public CustomLoginModel(
-            IAuthenticationSchemeProvider schemeProvider,
-            IOptions<AbpAccountOptions> accountOptions,
-            IOptions<IdentityOptions> identityOptions,
-            IdentityDynamicClaimsPrincipalContributorCache cache)
-            : base(schemeProvider, accountOptions, identityOptions, cache)
+        public CustomLoginModel(IAuthenticationSchemeProvider schemeProvider,
+            IOptions<AbpAccountOptions> accountOptions, IOptions<IdentityOptions> identityOptions,
+            IdentityDynamicClaimsPrincipalContributorCache identityDynamicClaimsPrincipalContributorCache,
+            IWebHostEnvironment webHostEnvironment) : base(schemeProvider, accountOptions,
+            identityOptions, identityDynamicClaimsPrincipalContributorCache, webHostEnvironment)
         {
         }
     }
