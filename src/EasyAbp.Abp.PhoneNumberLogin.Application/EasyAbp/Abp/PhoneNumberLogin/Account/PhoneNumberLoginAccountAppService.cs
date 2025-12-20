@@ -2,7 +2,7 @@
 using EasyAbp.Abp.PhoneNumberLogin.Identity;
 using EasyAbp.Abp.PhoneNumberLogin.Settings;
 using EasyAbp.Abp.VerificationCode;
-using IdentityModel.Client;
+using Duende.IdentityModel.Client;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
@@ -17,7 +17,7 @@ using IdentityUser = Volo.Abp.Identity.IdentityUser;
 
 namespace EasyAbp.Abp.PhoneNumberLogin.Account
 {
-    public class PhoneNumberLoginAccountAppService : ApplicationService, IPhoneNumberLoginAccountAppService
+    public class PhoneNumberLoginAccountAppService : PhoneNumberLoginAppService, IPhoneNumberLoginAccountAppService
     {
         private readonly IPhoneNumberLoginVerificationCodeSender _phoneNumberLoginVerificationCodeSender;
         private readonly IPhoneNumberLoginNewUserCreator _phoneNumberLoginNewUserCreator;

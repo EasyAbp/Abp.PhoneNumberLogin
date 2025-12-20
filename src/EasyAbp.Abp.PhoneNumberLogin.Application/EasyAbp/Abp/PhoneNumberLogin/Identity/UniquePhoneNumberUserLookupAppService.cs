@@ -7,7 +7,7 @@ using Volo.Abp.Users;
 namespace EasyAbp.Abp.PhoneNumberLogin.Identity
 {
     [Authorize(PhoneNumberLoginPermissions.UserLookup.Default)]
-    public class UniquePhoneNumberUserLookupAppService : ApplicationService, IUniquePhoneNumberUserLookupAppService
+    public class UniquePhoneNumberUserLookupAppService : PhoneNumberLoginAppService, IUniquePhoneNumberUserLookupAppService
     {
         private readonly RepositoryUniquePhoneNumberUserLookupServiceProvider _userLookupServiceProvider;
 
