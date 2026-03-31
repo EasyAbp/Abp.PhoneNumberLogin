@@ -11,7 +11,7 @@ using PhoneNumberLoginSample.EntityFrameworkCore;
 using PhoneNumberLoginSample.Localization;
 using PhoneNumberLoginSample.MultiTenancy;
 using PhoneNumberLoginSample.Web.Menus;
-using Microsoft.OpenApi.Models;
+using Microsoft.OpenApi;
 using OpenIddict.Validation.AspNetCore;
 using Volo.Abp;
 using Volo.Abp.Account.Web;
