@@ -13,7 +13,7 @@
 
   <ItemGroup>
     <PackageReference Include="Volo.Abp.Account.Web" Version="$(AbpVersion)" />
-    <PackageReference Include="Volo.Abp.AutoMapper" Version="$(AbpVersion)" />
+    <PackageReference Include="Volo.Abp.Mapperly" Version="$(AbpVersion)" />
     <PackageReference Include="Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared" Version="$(AbpVersion)" />
     <PackageReference Include="Volo.Abp.Identity.Domain.Shared" Version="$(AbpVersion)" />
   </ItemGroup>
