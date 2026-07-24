@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Volo.Abp.AutoMapper" Version="$(AbpVersion)" />
+    <PackageReference Include="Volo.Abp.Mapperly" Version="$(AbpVersion)" />
     <PackageReference Include="Volo.Abp.Ddd.Application" Version="$(AbpVersion)" />
     <PackageReference Include="Volo.Abp.Http.Client.IdentityModel" Version="$(AbpVersion)" />
     <PackageReference Include="EasyAbp.Abp.VerificationCode" Version="$(EasyAbpAbpVerificationCodeModuleVersion)" />

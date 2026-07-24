@@ -5,7 +5,7 @@ using EasyAbp.Abp.PhoneNumberLogin.Web.Menus;
 using Volo.Abp.Account.Web;
 using Volo.Abp.AspNetCore.Mvc.Localization;
 using Volo.Abp.AspNetCore.Mvc.UI.Theme.Shared;
-using Volo.Abp.AutoMapper;
+using Volo.Abp.Mapperly;
 using Volo.Abp.Modularity;
 using Volo.Abp.UI.Navigation;
 using Volo.Abp.VirtualFileSystem;
@@ -19,7 +19,7 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Web
         typeof(AbpAspNetCoreMvcUiThemeSharedModule),
         typeof(AbpAccountWebModule),
         typeof(AbpIdentityDomainSharedModule),
-        typeof(AbpAutoMapperModule)
+        typeof(AbpMapperlyModule)
     )]
     public class AbpPhoneNumberLoginWebModule : AbpModule
     {
@@ -48,11 +48,7 @@ namespace EasyAbp.Abp.PhoneNumberLogin.Web
                 options.FileSets.AddEmbedded<AbpPhoneNumberLoginWebModule>();
             });
 
-            context.Services.AddAutoMapperObjectMapper<AbpPhoneNumberLoginWebModule>();
-            Configure<AbpAutoMapperOptions>(options =>
-            {
-                options.AddMaps<AbpPhoneNumberLoginWebModule>(validate: true);
-            });
+            context.Services.AddMapperlyObjectMapper<AbpPhoneNumberLoginWebModule>();
 
             Configure<RazorPagesOptions>(options =>
             {
